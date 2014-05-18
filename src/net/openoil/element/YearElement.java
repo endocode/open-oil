@@ -6,10 +6,10 @@ import java.util.List;
 import net.openoil.visitor.IContractElementVisitor;
 
 /**
- * The year element defines how many years the contract covers. 
+ * The year element defines how many years the contract covers.
  */
 public class YearElement implements IContractElement {
-    
+
     private List<Integer> year = new ArrayList<Integer>();
 
     @Override

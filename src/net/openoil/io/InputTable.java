@@ -12,7 +12,11 @@ public class InputTable {
     private List<Integer> year = new ArrayList<Integer>();
 
     private List<BigDecimal> production = new ArrayList<BigDecimal>();
-    
+
+    private List<BigDecimal> acreage = new ArrayList<BigDecimal>();
+
+    private List<BigDecimal> rentalPerKm = new ArrayList<BigDecimal>();
+
     public List<Integer> getYear() {
         return year;
     }
@@ -28,12 +32,30 @@ public class InputTable {
     public void setProduction(List<BigDecimal> production) {
         this.production = production;
     }
-    
+
     @Override
     public String toString() {
-        return "InputTable {\n" +
-                "\tyears = " + year + ",\n" +
-                "\tproduction = " + production + "\n}";
+        // TODO useful in early stages for checking... should probably
+        // remove/refactor later.
+        return "InputTable {\n" + "\tyears = " + year + ",\n"
+                + "\tproduction = " + production + "\n" + "\tacreage = "
+                + acreage + "\n" + "\trentalPerKm = " + rentalPerKm + "\n}";
+    }
+
+    public List<BigDecimal> getAcreage() {
+        return this.acreage;
+    }
+
+    public void setAcreage(List<BigDecimal> acreage) {
+        this.acreage = acreage;
+    }
+
+    public List<BigDecimal> getRentalPerKm() {
+        return this.rentalPerKm;
+    }
+
+    public void setRentalPerKm(List<BigDecimal> rentalPerKm) {
+        this.rentalPerKm = rentalPerKm;
     }
 
 }
