@@ -25,6 +25,8 @@ public class InputTable {
 
     private List<BigDecimal> opexPerBarrel = new ArrayList<BigDecimal>();
 
+    private List<BigDecimal> costRecoveryCeiling = new ArrayList<BigDecimal>();
+
     @Override
     public String toString() {
         // TODO useful in early stages for checking... should probably
@@ -64,6 +66,10 @@ public class InputTable {
 
     public List<BigDecimal> getOpexPerBarrel() {
         return this.opexPerBarrel;
+    }
+
+    public List<BigDecimal> getCostRecoveryCeiling() {
+        return this.costRecoveryCeiling;
     }
 
 }

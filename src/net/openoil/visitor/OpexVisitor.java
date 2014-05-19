@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.openoil.element.CapexElement;
+import net.openoil.element.CostRecoveryElement;
 import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
@@ -70,6 +71,12 @@ public class OpexVisitor implements IContractElementVisitor {
         }
 
         opexElement.setOpex(opex);
+    }
+
+    @Override
+    public void visit(CostRecoveryElement costRecoveryElement) {
+        // Do nothing.
+        return;
     }
 
 }
