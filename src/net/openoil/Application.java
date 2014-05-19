@@ -11,6 +11,7 @@ import net.openoil.io.InputTable;
 import net.openoil.io.OutputTable;
 import net.openoil.visitor.FlatRoyaltyVisitor;
 import net.openoil.visitor.InitialisingVisitor;
+import net.openoil.visitor.OpexVisitor;
 import net.openoil.visitor.OutputVisitor;
 import net.openoil.visitor.SurfaceRentalVisitor;
 
@@ -44,9 +45,6 @@ public class Application {
 
             // Convert JSON string to InputTable
             inputs = gson.fromJson(br, InputTable.class);
-
-            // TODO Useful for testing right now, but get rid of it real soon...
-            System.out.println(inputs);
         } catch (IOException e) {
             // TODO Proper error handling
             e.printStackTrace();
@@ -57,10 +55,11 @@ public class Application {
         IContractElement contract = new Contract();
         contract.accept(new InitialisingVisitor(inputs));
 
-        // TODO All intermediate visitors will be called here.
-
+        // TODO All intermediate visitors are called here - order is hard-coded
+        // right now.
         contract.accept(new SurfaceRentalVisitor());
         contract.accept(new FlatRoyaltyVisitor());
+        contract.accept(new OpexVisitor());
 
         // Gather all the final values to be output.
         OutputTable outputs = new OutputTable();

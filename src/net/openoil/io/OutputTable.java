@@ -21,6 +21,10 @@ public class OutputTable {
 
     private List<BigDecimal> flatRoyalty = new ArrayList<BigDecimal>();
 
+    private List<BigDecimal> capex = new ArrayList<BigDecimal>();
+
+    private List<BigDecimal> opex = new ArrayList<BigDecimal>();
+
     @Override
     public String toString() {
         return "OutputTable {\n" + "\tyears = " + year + ",\n"
@@ -65,6 +69,22 @@ public class OutputTable {
 
     public List<BigDecimal> getFlatRoyalty() {
         return this.flatRoyalty;
+    }
+
+    public List<BigDecimal> getCapex() {
+        return this.capex;
+    }
+
+    public void setCapex(List<BigDecimal> capex) {
+        this.capex = capex;
+    }
+
+    public List<BigDecimal> getOpex() {
+        return this.opex;
+    }
+
+    public void setOpex(List<BigDecimal> opex) {
+        this.opex = opex;
     }
 
 }

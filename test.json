@@ -4,5 +4,7 @@
     production: [ 1172, 11750, 10693 ],
     acreage: [831, 831, 400],
     rentalPerKm: [30, 30, 30],
-    flatRoyaltyRate: [0.15]
+    flatRoyaltyRate: [0.15],
+    capex: [50000, 100000, 100000],
+    opexPerBarrel: [12]
 }

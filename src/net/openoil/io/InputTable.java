@@ -21,6 +21,10 @@ public class InputTable {
 
     private List<BigDecimal> flatRoyaltyRate = new ArrayList<BigDecimal>();
 
+    private List<BigDecimal> capex = new ArrayList<BigDecimal>();
+
+    private List<BigDecimal> opexPerBarrel = new ArrayList<BigDecimal>();
+
     @Override
     public String toString() {
         // TODO useful in early stages for checking... should probably
@@ -52,6 +56,14 @@ public class InputTable {
 
     public List<BigDecimal> getFlatRoyaltyRate() {
         return this.flatRoyaltyRate;
+    }
+
+    public List<BigDecimal> getCapex() {
+        return this.capex;
+    }
+
+    public List<BigDecimal> getOpexPerBarrel() {
+        return this.opexPerBarrel;
     }
 
 }
