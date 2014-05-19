@@ -1,5 +1,6 @@
 {
     year: [1, 2, 3],
+    price: [100, 100, 100],
     production: [ 1.23, 2.34, 3.45 ],
     acreage: [831, 831, 400],
     rentalPerKm: [30, 30, 30]

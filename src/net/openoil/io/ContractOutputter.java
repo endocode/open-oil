@@ -19,6 +19,7 @@ public class ContractOutputter {
 
         addToOutput(outputStr, outputs.getYear());
         addToOutput(outputStr, outputs.getProduction());
+        addToOutput(outputStr, outputs.getPrice());
         addToOutput(outputStr, outputs.getSurfaceRental());
 
         System.out.println(outputStr);

@@ -14,6 +14,8 @@ public class OutputTable {
 
     private List<BigDecimal> production = new ArrayList<BigDecimal>();
 
+    private List<BigDecimal> price = new ArrayList<BigDecimal>();
+
     // Total surface rental
     private List<BigDecimal> surfaceRental = new ArrayList<BigDecimal>();
 
@@ -37,6 +39,14 @@ public class OutputTable {
 
     public void setProduction(List<BigDecimal> production) {
         this.production = production;
+    }
+
+    public List<BigDecimal> getPrice() {
+        return price;
+    }
+
+    public void setPrice(List<BigDecimal> price) {
+        this.price = price;
     }
 
     public List<BigDecimal> getSurfaceRental() {

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
@@ -23,6 +24,12 @@ public class SurfaceRentalVisitor implements IContractElementVisitor {
     @Override
     public void visit(YearElement year) {
         // Do nothing.
+        return;
+    }
+
+    @Override
+    public void visit(PriceElement price) {
+        // Do nothing
         return;
     }
 
@@ -56,4 +63,5 @@ public class SurfaceRentalVisitor implements IContractElementVisitor {
 
         surfaceRentalElement.setSurfaceRental(surfaceRental);
     }
+
 }

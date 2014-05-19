@@ -1,5 +1,6 @@
 package net.openoil.visitor;
 
+import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
@@ -23,6 +24,11 @@ public class InitialisingVisitor implements IContractElementVisitor {
     }
 
     @Override
+    public void visit(PriceElement price) {
+        price.setPrice(inputs.getPrice());
+    }
+
+    @Override
     public void visit(ProductionElement production) {
         production.setProduction(inputs.getProduction());
     }
@@ -32,4 +38,5 @@ public class InitialisingVisitor implements IContractElementVisitor {
         surfaceRentalElement.setAcreage(inputs.getAcreage());
         surfaceRentalElement.setRentalPerKm(inputs.getRentalPerKm());
     }
+
 }

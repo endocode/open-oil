@@ -1,5 +1,6 @@
 package net.openoil.visitor;
 
+import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
@@ -15,6 +16,11 @@ public class OutputVisitor implements IContractElementVisitor {
 
     public OutputVisitor(OutputTable outputs) {
         this.outputs = outputs;
+    }
+
+    @Override
+    public void visit(PriceElement price) {
+        this.outputs.setPrice(price.getPrice());
     }
 
     @Override
