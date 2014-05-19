@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OpenOil form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="form.css" media="all" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <button name="ColumnGenerator">Add column</button>
+    <button name="ColumnDropper">Drop last column</button>
+    <table id="YearlyTable">
+      <!-- placeholder for rows -->
+    </table>
+    <button name="ColumnGenerator">Add column</button>
+    <button name="ColumnDropper">Drop last column</button>
+    <hr>
+    <table id="SingleValuesTable">
+      <!-- placeholder for rows -->
+    </table>
+    <hr>
+    <button name="DailyProdRoyaltyRowGenerator">Add tranche row</button>
+    <button name="DailyProdRoyaltyRowDropper">Drop last tranche row</button>
+    <table id="DailyProdRoyaltyTable">
+      <tr>
+        <th>
+          tranche no.
+        </th>
+        <th colspan="2">
+          mbopd
+        </th>
+        <th>
+          rate
+        </th>
+      </tr>
+      <!-- placeholder for rows -->
+    </table>
+    <button name="DailyProdRoyaltyRowGenerator">Add tranche row</button>
+    <button name="DailyProdRoyaltyRowDropper">Drop last tranche row</button>
+    <hr>
+    <button name="CumulativeProdRoyaltyRowGenerator">Add tranche row</button>
+    <button name="CumulativeProdRoyaltyRowDropper">Drop last tranche row</button>
+    <table id="CumulativeProdRoyaltyTable">
+      <tr>
+        <th>
+          tranche no.
+        </th>
+        <th colspan="2">
+          mmbbls
+        </th>
+        <th>
+          rate
+        </th>
+      </tr>
+      <!-- placeholder for rows -->
+    </table>
+    <button name="CumulativeProdRoyaltyRowGenerator">Add tranche row</button>
+    <button name="CumulativeProdRoyaltyRowDropper">Drop last tranche row</button>
+    <hr>
+    <button name="ProdShareRowGenerator">Add tranche row</button>
+    <button name="ProdShareRowDropper">Drop last tranche row</button>
+    <table id="ProdShareTable">
+      <tr>
+        <th>
+          tranche no.
+        </th>
+        <th>
+          govt share
+        </th>
+        <th>
+          company share
+        </th>
+        <th colspan="2">
+          tranche mbopd
+        </th>
+      </tr>
+      <!-- placeholder for rows -->
+    </table>
+    <button name="ProdShareRowGenerator">Add tranche row</button>
+    <button name="ProdShareRowDropper">Drop last tranche row</button>
+    <hr>
+    <button id="JSONGenerator">Generate JSON</button>
+    <pre id="JSON"></pre>
+    <hr>
+    <pre id="DEBUG"></pre>
+    <script src="form.js" type="text/javascript"></script>
+  </body>
+</html>
