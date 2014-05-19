@@ -41,6 +41,11 @@ public class FlatRoyaltyVisitor implements IContractElementVisitor {
 
     @Override
     public void visit(FlatRoyaltyElement flatRoyaltyElement) {
+        // TODO Better checking of whether inputs are supplied or not.
+        if (flatRoyaltyElement.getRoyaltyRate().isEmpty()) {
+            return;
+        }
+
         // Calculate gross sales (production * price)
         List<BigDecimal> grossSales = new ArrayList<BigDecimal>();
         BigDecimal priceThisYear;

@@ -28,6 +28,11 @@ public class ContractOutputter {
 
     private void addToOutput(StringBuilder outputStr, String rowName,
             List<?> figures) {
+
+        if (null == figures) {
+            return;
+        }
+
         Iterator<?> i = figures.iterator();
 
         outputStr.append(rowName + ",");
