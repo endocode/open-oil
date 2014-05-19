@@ -1,5 +1,6 @@
 package net.openoil.visitor;
 
+import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
 import net.openoil.element.SurfaceRentalElement;
@@ -36,6 +37,10 @@ public class OutputVisitor implements IContractElementVisitor {
     @Override
     public void visit(SurfaceRentalElement surfaceRentalElement) {
         this.outputs.setSurfaceRental(surfaceRentalElement.getSurfaceRental());
+    }
 
+    @Override
+    public void visit(FlatRoyaltyElement flatRoyaltyElement) {
+        this.outputs.setFlatRoyalty(flatRoyaltyElement.getRoyalty());
     }
 }

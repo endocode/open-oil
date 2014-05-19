@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
 import net.openoil.element.SurfaceRentalElement;
@@ -62,6 +63,12 @@ public class SurfaceRentalVisitor implements IContractElementVisitor {
         }
 
         surfaceRentalElement.setSurfaceRental(surfaceRental);
+    }
+
+    @Override
+    public void visit(FlatRoyaltyElement flatRoyaltyElement) {
+        // Do nothing.
+        return;
     }
 
 }

@@ -19,6 +19,7 @@ public class Contract implements IContractElement {
         contractElements.add(new PriceElement());
         contractElements.add(new ProductionElement());
         contractElements.add(new SurfaceRentalElement());
+        contractElements.add(new FlatRoyaltyElement());
     }
 
     /**

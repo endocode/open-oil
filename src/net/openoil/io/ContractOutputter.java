@@ -17,16 +17,20 @@ public class ContractOutputter {
     public void output() {
         StringBuilder outputStr = new StringBuilder();
 
-        addToOutput(outputStr, outputs.getYear());
-        addToOutput(outputStr, outputs.getProduction());
-        addToOutput(outputStr, outputs.getPrice());
-        addToOutput(outputStr, outputs.getSurfaceRental());
+        addToOutput(outputStr, "year", outputs.getYear());
+        addToOutput(outputStr, "production", outputs.getProduction());
+        addToOutput(outputStr, "price", outputs.getPrice());
+        addToOutput(outputStr, "surface rental", outputs.getSurfaceRental());
+        addToOutput(outputStr, "flat royalty", outputs.getFlatRoyalty());
 
         System.out.println(outputStr);
     }
 
-    private void addToOutput(StringBuilder outputStr, List<?> figures) {
+    private void addToOutput(StringBuilder outputStr, String rowName,
+            List<?> figures) {
         Iterator<?> i = figures.iterator();
+
+        outputStr.append(rowName + ",");
 
         while (i.hasNext()) {
             Object figure = i.next();

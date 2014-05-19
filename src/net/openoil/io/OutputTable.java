@@ -16,8 +16,10 @@ public class OutputTable {
 
     private List<BigDecimal> price = new ArrayList<BigDecimal>();
 
-    // Total surface rental
+    // Total surface rental in $
     private List<BigDecimal> surfaceRental = new ArrayList<BigDecimal>();
+
+    private List<BigDecimal> flatRoyalty = new ArrayList<BigDecimal>();
 
     @Override
     public String toString() {
@@ -55,6 +57,14 @@ public class OutputTable {
 
     public void setSurfaceRental(List<BigDecimal> surfaceRental) {
         this.surfaceRental = surfaceRental;
+    }
+
+    public void setFlatRoyalty(List<BigDecimal> royalty) {
+        this.flatRoyalty = royalty;
+    }
+
+    public List<BigDecimal> getFlatRoyalty() {
+        return this.flatRoyalty;
     }
 
 }
