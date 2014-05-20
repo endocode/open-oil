@@ -22,6 +22,8 @@ public class ContractOutputter {
         addToOutput(outputStr, "price", outputs.getPrice());
         addToOutput(outputStr, "surface rental", outputs.getSurfaceRental());
         addToOutput(outputStr, "flat royalty", outputs.getFlatRoyalty());
+        addToOutput(outputStr, "capex", outputs.getCapex());
+        addToOutput(outputStr, "opex", outputs.getOpex());
 
         System.out.println(outputStr);
     }

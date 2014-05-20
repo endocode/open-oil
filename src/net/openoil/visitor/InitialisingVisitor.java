@@ -1,6 +1,8 @@
 package net.openoil.visitor;
 
+import net.openoil.element.CapexElement;
 import net.openoil.element.FlatRoyaltyElement;
+import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
 import net.openoil.element.SurfaceRentalElement;
@@ -43,7 +45,16 @@ public class InitialisingVisitor implements IContractElementVisitor {
     @Override
     public void visit(FlatRoyaltyElement flatRoyaltyElement) {
         flatRoyaltyElement.setRoyaltyRate(inputs.getFlatRoyaltyRate());
+    }
 
+    @Override
+    public void visit(CapexElement capexElement) {
+        capexElement.setCapex(inputs.getCapex());
+    }
+
+    @Override
+    public void visit(OpexElement opexElement) {
+        opexElement.setOpexPerBarrel(inputs.getOpexPerBarrel());
     }
 
 }
