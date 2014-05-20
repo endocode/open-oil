@@ -98,8 +98,9 @@ public class CumulativeProductionRoyaltyVisitor implements
                     .add(production.get(y));
 
             // If cumulative production is still 0, skip to the next year
-            if (cumulativeProductionThisYear.compareTo(BigDecimal.ZERO) > 0) {
+            if (cumulativeProductionThisYear.compareTo(BigDecimal.ZERO) == 0) {
                 royalty.add(BigDecimal.ZERO);
+                continue;
             }
 
             // Find which top tranche, N, the cumulativeProduction falls into.

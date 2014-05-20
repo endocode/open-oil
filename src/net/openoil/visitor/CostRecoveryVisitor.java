@@ -21,9 +21,11 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
 
     private List<BigDecimal> production;
 
-    private List<BigDecimal> royalty;
+    private List<BigDecimal> flatRoyalty;
 
     private List<BigDecimal> dailyProductionRoyalty;
+
+    private List<BigDecimal> cumulativeProductionRoyalty;
 
     private List<BigDecimal> capex;
 
@@ -54,7 +56,7 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
 
     @Override
     public void visit(FlatRoyaltyElement flatRoyaltyElement) {
-        this.royalty = flatRoyaltyElement.getRoyalty();
+        this.flatRoyalty = flatRoyaltyElement.getRoyalty();
     }
 
     @Override
@@ -65,6 +67,20 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
     @Override
     public void visit(OpexElement opexElement) {
         this.opex = opexElement.getOpex();
+    }
+
+    @Override
+    public void visit(
+            DailyProductionRoyaltyElement dailyProductionRoyaltyElement) {
+        this.dailyProductionRoyalty = dailyProductionRoyaltyElement
+                .getDailyProductionRoyalty();
+    }
+
+    @Override
+    public void visit(
+            CumulativeProductionRoyaltyElement cumulativeProductionRoyaltyElement) {
+        this.cumulativeProductionRoyalty = cumulativeProductionRoyaltyElement
+                .getCumulativeProductionRoyalty();
     }
 
     @Override
@@ -100,7 +116,23 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
                     opex.get(i)));
 
             // Subtract the royalty
-            costRecoveryBaseN = grossSalesN.subtract(royalty.get(i));
+            // TODO Could represent royalty in a better way, e.g. have a
+            // slightly more abstract Royalty class that more specific Royalties
+            // inherit from.
+            BigDecimal totalRoyalty = BigDecimal.ZERO;
+            if (null != flatRoyalty && !flatRoyalty.isEmpty()) {
+                totalRoyalty = totalRoyalty.add(flatRoyalty.get(i));
+            }
+            if (null != dailyProductionRoyalty
+                    && !dailyProductionRoyalty.isEmpty()) {
+                totalRoyalty = totalRoyalty.add(dailyProductionRoyalty.get(i));
+            }
+            if (null != cumulativeProductionRoyalty
+                    && !cumulativeProductionRoyalty.isEmpty()) {
+                totalRoyalty = totalRoyalty.add(cumulativeProductionRoyalty
+                        .get(i));
+            }
+            costRecoveryBaseN = grossSalesN.subtract(totalRoyalty);
 
             // Multiply it by the recovery ceiling (a percentage)
             costRecoveryN = costRecoveryBaseN.multiply(costRecoveryCeiling.get(
@@ -119,19 +151,5 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
         }
 
         costRecoveryElement.setCostRecovery(cumulativeRecoverableCost);
-    }
-
-    @Override
-    public void visit(
-            DailyProductionRoyaltyElement dailyProductionRoyaltyElement) {
-        this.dailyProductionRoyalty = dailyProductionRoyaltyElement
-                .getDailyProductionRoyalty();
-    }
-
-    @Override
-    public void visit(
-            CumulativeProductionRoyaltyElement cumulativeProductionRoyaltyElement) {
-        // Do nothing.
-        return;
     }
 }
