@@ -25,6 +25,8 @@ public class OutputTable {
 
     private List<BigDecimal> opex = new ArrayList<BigDecimal>();
 
+    private List<BigDecimal> costRecovery = new ArrayList<BigDecimal>();
+
     @Override
     public String toString() {
         return "OutputTable {\n" + "\tyears = " + year + ",\n"
@@ -85,6 +87,14 @@ public class OutputTable {
 
     public void setOpex(List<BigDecimal> opex) {
         this.opex = opex;
+    }
+
+    public List<BigDecimal> getCostRecovery() {
+        return this.costRecovery;
+    }
+
+    public void setCostRecovery(List<BigDecimal> costRecovery) {
+        this.costRecovery = costRecovery;
     }
 
 }

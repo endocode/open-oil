@@ -24,6 +24,8 @@ public class ContractOutputter {
         addToOutput(outputStr, "flat royalty", outputs.getFlatRoyalty());
         addToOutput(outputStr, "capex", outputs.getCapex());
         addToOutput(outputStr, "opex", outputs.getOpex());
+        addToOutput(outputStr, "cumulative recoverable cost",
+                outputs.getCostRecovery());
 
         System.out.println(outputStr);
     }

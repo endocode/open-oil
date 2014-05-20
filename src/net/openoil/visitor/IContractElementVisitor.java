@@ -1,6 +1,7 @@
 package net.openoil.visitor;
 
 import net.openoil.element.CapexElement;
+import net.openoil.element.CostRecoveryElement;
 import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
@@ -27,5 +28,7 @@ public interface IContractElementVisitor {
     public void visit(CapexElement capexElement);
 
     public void visit(OpexElement opexElement);
+
+    public void visit(CostRecoveryElement costRecoveryElement);
 
 }

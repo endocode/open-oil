@@ -9,6 +9,7 @@ import net.openoil.element.IContractElement;
 import net.openoil.io.ContractOutputter;
 import net.openoil.io.InputTable;
 import net.openoil.io.OutputTable;
+import net.openoil.visitor.CostRecoveryVisitor;
 import net.openoil.visitor.FlatRoyaltyVisitor;
 import net.openoil.visitor.InitialisingVisitor;
 import net.openoil.visitor.OpexVisitor;
@@ -60,6 +61,7 @@ public class Application {
         contract.accept(new SurfaceRentalVisitor());
         contract.accept(new FlatRoyaltyVisitor());
         contract.accept(new OpexVisitor());
+        contract.accept(new CostRecoveryVisitor());
 
         // Gather all the final values to be output.
         OutputTable outputs = new OutputTable();
