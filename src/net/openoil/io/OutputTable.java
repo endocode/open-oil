@@ -27,11 +27,7 @@ public class OutputTable {
 
     private List<BigDecimal> costRecovery = new ArrayList<BigDecimal>();
 
-    @Override
-    public String toString() {
-        return "OutputTable {\n" + "\tyears = " + year + ",\n"
-                + "\tproduction = " + production + "\n}";
-    }
+    private List<BigDecimal> dailyProductionRoyalty = new ArrayList<BigDecimal>();
 
     public List<Integer> getYear() {
         return year;
@@ -97,4 +93,12 @@ public class OutputTable {
         this.costRecovery = costRecovery;
     }
 
+    public List<BigDecimal> getDailyProductionRoyalty() {
+        return this.dailyProductionRoyalty;
+    }
+
+    public void setDailyProductionRoyalty(
+            List<BigDecimal> dailyProductionRoyalty) {
+        this.dailyProductionRoyalty = dailyProductionRoyalty;
+    }
 }

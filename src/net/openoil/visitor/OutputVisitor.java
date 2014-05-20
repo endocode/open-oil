@@ -2,6 +2,7 @@ package net.openoil.visitor;
 
 import net.openoil.element.CapexElement;
 import net.openoil.element.CostRecoveryElement;
+import net.openoil.element.DailyProductionRoyaltyElement;
 import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
@@ -59,5 +60,13 @@ public class OutputVisitor implements IContractElementVisitor {
 
     public void visit(CostRecoveryElement costRecoveryElement) {
         this.outputs.setCostRecovery(costRecoveryElement.getCostRecovery());
+    }
+
+    @Override
+    public void visit(
+            DailyProductionRoyaltyElement dailyProductionRoyaltyElement) {
+        this.outputs.setDailyProductionRoyalty(dailyProductionRoyaltyElement
+                .getDailyProductionRoyalty());
+
     }
 }

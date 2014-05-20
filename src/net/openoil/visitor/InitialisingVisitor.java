@@ -1,7 +1,11 @@
 package net.openoil.visitor;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 import net.openoil.element.CapexElement;
 import net.openoil.element.CostRecoveryElement;
+import net.openoil.element.DailyProductionRoyaltyElement;
 import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
@@ -62,6 +66,17 @@ public class InitialisingVisitor implements IContractElementVisitor {
     public void visit(CostRecoveryElement costRecoveryElement) {
         costRecoveryElement.setCostRecoveryCeiling(inputs
                 .getCostRecoveryCeiling());
+    }
+
+    @Override
+    public void visit(
+            DailyProductionRoyaltyElement dailyProductionRoyaltyElement) {
+        List<List<BigDecimal>> tranches = inputs
+                .getDailyProductionRoyaltyTranche();
+
+        for (List<BigDecimal> t : tranches) {
+            dailyProductionRoyaltyElement.addTranche(t);
+        }
     }
 
 }

@@ -26,6 +26,8 @@ public class ContractOutputter {
         addToOutput(outputStr, "opex", outputs.getOpex());
         addToOutput(outputStr, "cumulative recoverable cost",
                 outputs.getCostRecovery());
+        addToOutput(outputStr, "daily production royalty",
+                outputs.getDailyProductionRoyalty());
 
         System.out.println(outputStr);
     }

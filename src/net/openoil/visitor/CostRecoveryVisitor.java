@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.openoil.element.CapexElement;
 import net.openoil.element.CostRecoveryElement;
+import net.openoil.element.DailyProductionRoyaltyElement;
 import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
@@ -20,6 +21,8 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
     private List<BigDecimal> production;
 
     private List<BigDecimal> royalty;
+
+    private List<BigDecimal> dailyProductionRoyalty;
 
     private List<BigDecimal> capex;
 
@@ -51,7 +54,6 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
     @Override
     public void visit(FlatRoyaltyElement flatRoyaltyElement) {
         this.royalty = flatRoyaltyElement.getRoyalty();
-
     }
 
     @Override
@@ -116,5 +118,12 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
         }
 
         costRecoveryElement.setCostRecovery(cumulativeRecoverableCost);
+    }
+
+    @Override
+    public void visit(
+            DailyProductionRoyaltyElement dailyProductionRoyaltyElement) {
+        this.dailyProductionRoyalty = dailyProductionRoyaltyElement
+                .getDailyProductionRoyalty();
     }
 }

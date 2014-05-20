@@ -61,6 +61,7 @@ public class Application {
         contract.accept(new SurfaceRentalVisitor());
         contract.accept(new FlatRoyaltyVisitor());
         contract.accept(new OpexVisitor());
+        contract.accept(new DailyProductionRoyaltyVisitor());
         contract.accept(new CostRecoveryVisitor());
 
         // Gather all the final values to be output.

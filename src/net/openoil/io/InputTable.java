@@ -27,13 +27,13 @@ public class InputTable {
 
     private List<BigDecimal> costRecoveryCeiling = new ArrayList<BigDecimal>();
 
+    private List<List<BigDecimal>> dailyProductionRoyaltyTranche = new ArrayList<List<BigDecimal>>();
+
     @Override
     public String toString() {
         // TODO useful in early stages for checking... should probably
         // remove/refactor later.
-        return "InputTable {\n" + "\tyears = " + year + ",\n"
-                + "\tproduction = " + production + "\n" + "\tacreage = "
-                + acreage + "\n" + "\trentalPerKm = " + rentalPerKm + "\n}";
+        return "dailyProductionRoyaltyTranche " + dailyProductionRoyaltyTranche;
     }
 
     public List<Integer> getYear() {
@@ -70,6 +70,10 @@ public class InputTable {
 
     public List<BigDecimal> getCostRecoveryCeiling() {
         return this.costRecoveryCeiling;
+    }
+
+    public List<List<BigDecimal>> getDailyProductionRoyaltyTranche() {
+        return this.dailyProductionRoyaltyTranche;
     }
 
 }
