@@ -1,14 +1,13 @@
-package net.openoil;
+package net.openoil.visitor;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import net.openoil.element.CapexElement;
 import net.openoil.element.CostRecoveryElement;
+import net.openoil.element.CumulativeProductionRoyaltyElement;
 import net.openoil.element.DailyProductionRoyaltyElement;
 import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
@@ -16,11 +15,9 @@ import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
-import net.openoil.visitor.IContractElementVisitor;
 
-public class DailyProductionRoyaltyVisitor implements IContractElementVisitor {
-
-    private final int DAYS_PER_YEAR = 365;
+public class CumulativeProductionRoyaltyVisitor implements
+        IContractElementVisitor {
 
     private List<Integer> year = new ArrayList<Integer>();
 
@@ -29,8 +26,8 @@ public class DailyProductionRoyaltyVisitor implements IContractElementVisitor {
     private List<BigDecimal> price = new ArrayList<BigDecimal>();
 
     @Override
-    public void visit(ProductionElement production) {
-        this.production = production.getProduction();
+    public void visit(YearElement year) {
+        this.year = year.getYear();
     }
 
     @Override
@@ -39,8 +36,8 @@ public class DailyProductionRoyaltyVisitor implements IContractElementVisitor {
     }
 
     @Override
-    public void visit(YearElement year) {
-        this.year = year.getYear();
+    public void visit(ProductionElement production) {
+        this.production = production.getProduction();
     }
 
     @Override
@@ -76,31 +73,37 @@ public class DailyProductionRoyaltyVisitor implements IContractElementVisitor {
     @Override
     public void visit(
             DailyProductionRoyaltyElement dailyProductionRoyaltyElement) {
+        // Do nothing.
+        return;
+    }
 
-        List<Map<String, BigDecimal>> tranches = dailyProductionRoyaltyElement
+    @Override
+    public void visit(
+            CumulativeProductionRoyaltyElement cumulativeProductionRoyaltyElement) {
+
+        List<Map<String, BigDecimal>> tranches = cumulativeProductionRoyaltyElement
                 .getTranchTable();
-        List<BigDecimal> royalty = new ArrayList<BigDecimal>();
 
-        BigDecimal productionThisYear;
-        BigDecimal adp = new BigDecimal(0);
-        BigDecimal daysPerYear = new BigDecimal(DAYS_PER_YEAR);
+        // If no tranche provided, do nothing.
+        if (null == tranches || tranches.isEmpty()) {
+            return;
+        }
+
+        List<BigDecimal> royalty = new ArrayList<BigDecimal>();
+        BigDecimal cumulativeProductionThisYear = BigDecimal.ZERO;
 
         for (int y = 0; y < year.size(); y++) {
-            // Check if production is zero and skip this year if so.
-            if (production.get(y).equals(new BigDecimal(0))) {
-                royalty.add(new BigDecimal(0));
-                continue;
+            // Calculate cumulative production to this year
+            cumulativeProductionThisYear = cumulativeProductionThisYear
+                    .add(production.get(y));
+
+            // If cumulative production is still 0, skip to the next year
+            if (cumulativeProductionThisYear.compareTo(BigDecimal.ZERO) > 0) {
+                royalty.add(BigDecimal.ZERO);
             }
 
-            // Calculate the avg. daily production (ADP).
-            // Example calculations provided use rounding down.
-            productionThisYear = production.get(y);
-            adp = productionThisYear.divide(daysPerYear, new MathContext(4,
-                    RoundingMode.DOWN));
-
-            // Find which tranche the ADP falls into. The volume for each
-            // tranche
-            // needs to be split between the top tranche, N, and all lower
+            // Find which top tranche, N, the cumulativeProduction falls into.
+            // This figure will be split between this tranche and all lower
             // tranches down to 1.
             int trancheN;
             Map<String, BigDecimal> tranche;
@@ -109,65 +112,62 @@ public class DailyProductionRoyaltyVisitor implements IContractElementVisitor {
             for (trancheN = 0; trancheN < tranches.size(); trancheN++) {
                 tranche = tranches.get(trancheN);
                 lowerBound = tranche
-                        .get(DailyProductionRoyaltyElement.LOWER_MBOPD);
+                        .get(CumulativeProductionRoyaltyElement.LOWER_MMBBLS);
                 upperBound = tranche
-                        .get(DailyProductionRoyaltyElement.UPPER_MBOPD);
+                        .get(CumulativeProductionRoyaltyElement.UPPER_MMBBLS);
 
-                if (adp.compareTo(lowerBound) > 0
-                        && adp.compareTo(upperBound) < 0) {
+                if (cumulativeProductionThisYear.compareTo(lowerBound) >= 0
+                        && cumulativeProductionThisYear.compareTo(upperBound) < 0) {
                     break;
                 }
             }
 
             // For each tranche:
-            // volumeTrancheN = min(adp, trancheNCeiling) - tranchNFloor
-            // royaltyTrancheN = volumeTranchN * rateTranchN * priceThisYear *
-            // daysPerYear
+            // volumeTrancheN = min(cumProd, trancheNCeiling) - tranchNFloor
+            // royaltyTrancheN = volumeTranchN * rateTranchN * priceThisYear
 
             // Each royalty in this list is a royalty per tranche, but only for
             // this year.
             List<BigDecimal> royaltyThisYear = new ArrayList<BigDecimal>();
-            BigDecimal royaltyTrancheN;
             BigDecimal ceilingTrancheN;
             BigDecimal floorTrancheN;
             BigDecimal rateTrancheN;
             BigDecimal volumeTrancheN;
+            BigDecimal royaltyTrancheN;
 
             // We go down from the top tranche N to tranche 1
             for (; trancheN >= 0; trancheN--) {
                 tranche = tranches.get(trancheN);
                 ceilingTrancheN = tranche
-                        .get(DailyProductionRoyaltyElement.UPPER_MBOPD);
+                        .get(CumulativeProductionRoyaltyElement.UPPER_MMBBLS);
                 floorTrancheN = tranche
-                        .get(DailyProductionRoyaltyElement.LOWER_MBOPD);
+                        .get(CumulativeProductionRoyaltyElement.LOWER_MMBBLS);
 
                 // Convert to a percentage
                 rateTrancheN = tranche.get(
-                        DailyProductionRoyaltyElement.ROYALTY_RATE)
+                        CumulativeProductionRoyaltyElement.ROYALTY_RATE)
                         .movePointLeft(2);
 
-                volumeTrancheN = adp.min(ceilingTrancheN).subtract(
-                        floorTrancheN);
-
-                // Convert volume from mbbls to actual number (because we are
-                // going to calculate using price per barrel)
-                volumeTrancheN = volumeTrancheN.movePointRight(3);
+                volumeTrancheN = cumulativeProductionThisYear.min(
+                        ceilingTrancheN).subtract(floorTrancheN);
 
                 royaltyTrancheN = volumeTrancheN.multiply(rateTrancheN)
-                        .multiply(price.get(y)).multiply(daysPerYear);
+                        .multiply(price.get(y));
 
                 royaltyThisYear.add(royaltyTrancheN);
             }
 
             // At the end
             // royaltyThisYear = sum(tranchN .. tranche1)
-            BigDecimal totalRoyaltyThisYear = new BigDecimal(0);
+            BigDecimal totalRoyaltyThisYear = BigDecimal.ZERO;
             for (BigDecimal r : royaltyThisYear) {
                 totalRoyaltyThisYear = totalRoyaltyThisYear.add(r);
             }
             royalty.add(totalRoyaltyThisYear);
         }
 
-        dailyProductionRoyaltyElement.setDailyProductionRoyalty(royalty);
+        cumulativeProductionRoyaltyElement
+                .setCumulativeProductionRoyalty(royalty);
     }
+
 }

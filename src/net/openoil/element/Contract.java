@@ -23,7 +23,7 @@ public class Contract implements IContractElement {
         contractElements.add(new OpexElement());
         contractElements.add(new FlatRoyaltyElement());
         contractElements.add(new DailyProductionRoyaltyElement());
-        // TODO CumProdRoyalty
+        contractElements.add(new CumulativeProductionRoyaltyElement());
         contractElements.add(new CostRecoveryElement());
     }
 

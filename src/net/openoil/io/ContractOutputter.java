@@ -28,6 +28,8 @@ public class ContractOutputter {
                 outputs.getCostRecovery());
         addToOutput(outputStr, "daily production royalty",
                 outputs.getDailyProductionRoyalty());
+        addToOutput(outputStr, "cumulative production royalty",
+                outputs.getCumulativeProductionRoyalty());
 
         System.out.println(outputStr);
     }

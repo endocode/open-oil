@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.openoil.element.CapexElement;
 import net.openoil.element.CostRecoveryElement;
+import net.openoil.element.CumulativeProductionRoyaltyElement;
 import net.openoil.element.DailyProductionRoyaltyElement;
 import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
@@ -76,6 +77,17 @@ public class InitialisingVisitor implements IContractElementVisitor {
 
         for (List<BigDecimal> t : tranches) {
             dailyProductionRoyaltyElement.addTranche(t);
+        }
+    }
+
+    @Override
+    public void visit(
+            CumulativeProductionRoyaltyElement cumulativeProductionRoyaltyElement) {
+        List<List<BigDecimal>> tranches = inputs
+                .getCumulativeProductionRoyaltyTranche();
+
+        for (List<BigDecimal> t : tranches) {
+            cumulativeProductionRoyaltyElement.addTranche(t);
         }
     }
 

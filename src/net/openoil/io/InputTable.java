@@ -29,11 +29,14 @@ public class InputTable {
 
     private List<List<BigDecimal>> dailyProductionRoyaltyTranche = new ArrayList<List<BigDecimal>>();
 
+    private List<List<BigDecimal>> cumulativeProductionRoyaltyTranche = new ArrayList<List<BigDecimal>>();
+
     @Override
     public String toString() {
         // TODO useful in early stages for checking... should probably
         // remove/refactor later.
-        return "dailyProductionRoyaltyTranche " + dailyProductionRoyaltyTranche;
+        return "cumProductionRoyaltyTranche "
+                + cumulativeProductionRoyaltyTranche;
     }
 
     public List<Integer> getYear() {
@@ -74,6 +77,10 @@ public class InputTable {
 
     public List<List<BigDecimal>> getDailyProductionRoyaltyTranche() {
         return this.dailyProductionRoyaltyTranche;
+    }
+
+    public List<List<BigDecimal>> getCumulativeProductionRoyaltyTranche() {
+        return this.cumulativeProductionRoyaltyTranche;
     }
 
 }

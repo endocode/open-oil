@@ -29,6 +29,8 @@ public class OutputTable {
 
     private List<BigDecimal> dailyProductionRoyalty = new ArrayList<BigDecimal>();
 
+    private List<BigDecimal> cumulativeProductionRoyalty = new ArrayList<BigDecimal>();
+
     public List<Integer> getYear() {
         return year;
     }
@@ -100,5 +102,14 @@ public class OutputTable {
     public void setDailyProductionRoyalty(
             List<BigDecimal> dailyProductionRoyalty) {
         this.dailyProductionRoyalty = dailyProductionRoyalty;
+    }
+
+    public List<BigDecimal> getCumulativeProductionRoyalty() {
+        return this.cumulativeProductionRoyalty;
+    }
+
+    public void setCumulativeProductionRoyalty(
+            List<BigDecimal> cumulativeProductionRoyalty) {
+        this.cumulativeProductionRoyalty = cumulativeProductionRoyalty;
     }
 }
