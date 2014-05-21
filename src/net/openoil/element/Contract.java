@@ -25,6 +25,8 @@ public class Contract implements IContractElement {
         contractElements.add(new DailyProductionRoyaltyElement());
         contractElements.add(new CumulativeProductionRoyaltyElement());
         contractElements.add(new CostRecoveryElement());
+        contractElements.add(new ProfitOilElement());
+        // contractElements.add(new ProductionSharingTrancheElement());
     }
 
     /**

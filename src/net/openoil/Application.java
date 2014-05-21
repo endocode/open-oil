@@ -16,6 +16,7 @@ import net.openoil.visitor.FlatRoyaltyVisitor;
 import net.openoil.visitor.InitialisingVisitor;
 import net.openoil.visitor.OpexVisitor;
 import net.openoil.visitor.OutputVisitor;
+import net.openoil.visitor.ProfitOilVisitor;
 import net.openoil.visitor.SurfaceRentalVisitor;
 
 import com.google.gson.Gson;
@@ -66,6 +67,7 @@ public class Application {
         contract.accept(new DailyProductionRoyaltyVisitor());
         contract.accept(new CumulativeProductionRoyaltyVisitor());
         contract.accept(new CostRecoveryVisitor());
+        contract.accept(new ProfitOilVisitor());
 
         // Gather all the final values to be output.
         OutputTable outputs = new OutputTable();

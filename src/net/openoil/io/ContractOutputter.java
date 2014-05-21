@@ -17,19 +17,20 @@ public class ContractOutputter {
     public void output() {
         StringBuilder outputStr = new StringBuilder();
 
-        addToOutput(outputStr, "year", outputs.getYear());
-        addToOutput(outputStr, "production", outputs.getProduction());
-        addToOutput(outputStr, "price", outputs.getPrice());
-        addToOutput(outputStr, "surface rental", outputs.getSurfaceRental());
-        addToOutput(outputStr, "flat royalty", outputs.getFlatRoyalty());
-        addToOutput(outputStr, "capex", outputs.getCapex());
-        addToOutput(outputStr, "opex", outputs.getOpex());
-        addToOutput(outputStr, "daily production royalty",
+        addToOutput(outputStr, "Year", outputs.getYear());
+        addToOutput(outputStr, "Production", outputs.getProduction());
+        addToOutput(outputStr, "Price", outputs.getPrice());
+        addToOutput(outputStr, "Surface Rental", outputs.getSurfaceRental());
+        addToOutput(outputStr, "Flat Royalty", outputs.getFlatRoyalty());
+        addToOutput(outputStr, "Capex", outputs.getCapex());
+        addToOutput(outputStr, "Opex", outputs.getOpex());
+        addToOutput(outputStr, "Daily Production Royalty",
                 outputs.getDailyProductionRoyalty());
-        addToOutput(outputStr, "cumulative production royalty",
+        addToOutput(outputStr, "Cumulative Production Royalty",
                 outputs.getCumulativeProductionRoyalty());
-        addToOutput(outputStr, "cumulative recoverable cost",
+        addToOutput(outputStr, "Cumulative Recoverable Cost",
                 outputs.getCostRecovery());
+        addToOutput(outputStr, "Profit Oil", outputs.getProfitOil());
 
         System.out.println(outputStr);
     }

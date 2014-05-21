@@ -8,6 +8,7 @@ import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
+import net.openoil.element.ProfitOilElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
 import net.openoil.io.OutputTable;
@@ -77,5 +78,10 @@ public class OutputVisitor implements IContractElementVisitor {
         this.outputs
                 .setCumulativeProductionRoyalty(cumulativeProductionRoyaltyElement
                         .getCumulativeProductionRoyalty());
+    }
+
+    @Override
+    public void visit(ProfitOilElement profitOilElement) {
+        this.outputs.setProfitOil(profitOilElement.getProfitOil());
     }
 }
