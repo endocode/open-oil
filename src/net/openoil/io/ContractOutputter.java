@@ -31,6 +31,8 @@ public class ContractOutputter {
         addToOutput(outputStr, "Cumulative Recoverable Cost",
                 outputs.getCostRecovery());
         addToOutput(outputStr, "Profit Oil", outputs.getProfitOil());
+        addToOutput(outputStr, "Government Share", outputs.getGovernmentShare());
+        addToOutput(outputStr, "Company Share", outputs.getCompanyShare());
 
         System.out.println(outputStr);
     }

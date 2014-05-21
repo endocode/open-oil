@@ -31,8 +31,7 @@ public class InputTable {
 
     private List<List<BigDecimal>> cumulativeProductionRoyaltyTranche = new ArrayList<List<BigDecimal>>();
 
-    // private List<List<BigDecimal>> productionSharingTranche = new
-    // ArrayList<List<BigDecimal>>();
+    private List<List<BigDecimal>> productionSharingTranche = new ArrayList<List<BigDecimal>>();
 
     public List<Integer> getYear() {
         return year;
@@ -78,8 +77,8 @@ public class InputTable {
         return this.cumulativeProductionRoyaltyTranche;
     }
 
-    // public List<List<BigDecimal>> getProductionSharingTranche() {
-    // return this.productionSharingTranche;
-    // }
+    public List<List<BigDecimal>> getProductionSharingTranche() {
+        return this.productionSharingTranche;
+    }
 
 }

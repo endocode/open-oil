@@ -33,6 +33,10 @@ public class OutputTable {
 
     private List<BigDecimal> profitOil = new ArrayList<BigDecimal>();
 
+    private List<BigDecimal> governmentShare = new ArrayList<BigDecimal>();;
+
+    private List<BigDecimal> companyShare = new ArrayList<BigDecimal>();;
+
     public List<Integer> getYear() {
         return year;
     }
@@ -121,5 +125,21 @@ public class OutputTable {
 
     public List<BigDecimal> getProfitOil() {
         return this.profitOil;
+    }
+
+    public void setGovernmentShare(List<BigDecimal> governmentShare) {
+        this.governmentShare = governmentShare;
+    }
+
+    public List<BigDecimal> getGovernmentShare() {
+        return this.governmentShare;
+    }
+
+    public void setCompanyShare(List<BigDecimal> companyShare) {
+        this.companyShare = companyShare;
+    }
+
+    public List<BigDecimal> getCompanyShare() {
+        return this.companyShare;
     }
 }

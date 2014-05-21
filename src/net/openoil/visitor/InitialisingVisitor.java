@@ -11,6 +11,7 @@ import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
+import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
@@ -96,6 +97,16 @@ public class InitialisingVisitor implements IContractElementVisitor {
     public void visit(ProfitOilElement profitOilElement) {
         // Do nothing.
         return;
+    }
+
+    @Override
+    public void visit(
+            ProductionSharingTrancheElement productionSharingTrancheElement) {
+        List<List<BigDecimal>> tranches = inputs.getProductionSharingTranche();
+
+        for (List<BigDecimal> t : tranches) {
+            productionSharingTrancheElement.addTranche(t);
+        }
     }
 
 }
