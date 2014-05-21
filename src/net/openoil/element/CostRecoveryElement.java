@@ -13,6 +13,8 @@ public class CostRecoveryElement implements IContractElement {
     // Recovered costs in $mm
     private List<BigDecimal> costRecovery;
 
+    private List<BigDecimal> cumulativeRecoverableCosts;
+
     @Override
     public void accept(IContractElementVisitor visitor) {
         visitor.visit(this);
@@ -32,5 +34,14 @@ public class CostRecoveryElement implements IContractElement {
 
     public void setCostRecovery(List<BigDecimal> costRecovery) {
         this.costRecovery = costRecovery;
+    }
+
+    public List<BigDecimal> getCumulativeRecoverableCosts() {
+        return cumulativeRecoverableCosts;
+    }
+
+    public void setCumulativeRecoverableCosts(
+            List<BigDecimal> cumulativeRecoverableCosts) {
+        this.cumulativeRecoverableCosts = cumulativeRecoverableCosts;
     }
 }

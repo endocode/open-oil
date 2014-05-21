@@ -63,6 +63,8 @@ public class OutputVisitor implements IContractElementVisitor {
 
     public void visit(CostRecoveryElement costRecoveryElement) {
         this.outputs.setCostRecovery(costRecoveryElement.getCostRecovery());
+        this.outputs.setCumulativeRecoverableCosts(costRecoveryElement
+                .getCumulativeRecoverableCosts());
     }
 
     @Override

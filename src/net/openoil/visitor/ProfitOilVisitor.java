@@ -138,6 +138,12 @@ public class ProfitOilVisitor implements IContractElementVisitor {
         BigDecimal grossSalesThisYear;
 
         for (int i = 0; i < year.size(); i++) {
+            // Skip this year if there was no production
+            if (production.get(i).compareTo(BigDecimal.ZERO) == 0) {
+                profitOil.add(BigDecimal.ZERO);
+                continue;
+            }
+
             grossSalesThisYear = production.get(i).multiply(price.get(i));
             profitOilThisYear = grossSalesThisYear
                     .subtract(totalRoyalty.get(i))

@@ -29,7 +29,8 @@ public class ContractOutputter {
         addToOutput(outputStr, "Cumulative Production Royalty",
                 outputs.getCumulativeProductionRoyalty());
         addToOutput(outputStr, "Cumulative Recoverable Cost",
-                outputs.getCostRecovery());
+                outputs.getCumulativeRecoverableCosts());
+        addToOutput(outputStr, "Recovered Costs", outputs.getCostRecovery());
         addToOutput(outputStr, "Profit Oil", outputs.getProfitOil());
         addToOutput(outputStr, "Government Share", outputs.getGovernmentShare());
         addToOutput(outputStr, "Company Share", outputs.getCompanyShare());

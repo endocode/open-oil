@@ -33,9 +33,11 @@ public class OutputTable {
 
     private List<BigDecimal> profitOil = new ArrayList<BigDecimal>();
 
-    private List<BigDecimal> governmentShare = new ArrayList<BigDecimal>();;
+    private List<BigDecimal> governmentShare = new ArrayList<BigDecimal>();
 
-    private List<BigDecimal> companyShare = new ArrayList<BigDecimal>();;
+    private List<BigDecimal> companyShare = new ArrayList<BigDecimal>();
+
+    private List<BigDecimal> cumulativeRecoverableCosts = new ArrayList<BigDecimal>();
 
     public List<Integer> getYear() {
         return year;
@@ -141,5 +143,14 @@ public class OutputTable {
 
     public List<BigDecimal> getCompanyShare() {
         return this.companyShare;
+    }
+
+    public void setCumulativeRecoverableCosts(
+            List<BigDecimal> cumulativeRecoverableCosts) {
+        this.cumulativeRecoverableCosts = cumulativeRecoverableCosts;
+    }
+
+    public List<BigDecimal> getCumulativeRecoverableCosts() {
+        return this.cumulativeRecoverableCosts;
     }
 }

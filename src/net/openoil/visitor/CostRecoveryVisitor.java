@@ -95,12 +95,12 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
             return;
         }
 
-        List<BigDecimal> cumulativeRecoverableCost = new ArrayList<BigDecimal>();
-        List<BigDecimal> costCarriedForward = new ArrayList<BigDecimal>();
+        List<BigDecimal> costsRecovered = new ArrayList<BigDecimal>();
+        List<BigDecimal> cumulativeRecoverableCosts = new ArrayList<BigDecimal>();
 
         BigDecimal grossSalesN;
-        BigDecimal costCarriedForwardPrevious;
-        BigDecimal recoverableCostN;
+        BigDecimal cumulativeRecoverableCostPrevious;
+        BigDecimal cumulativeRecoverableCostN;
         BigDecimal costRecoveryN;
         BigDecimal costRecoveryBaseN;
 
@@ -108,16 +108,19 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
             grossSalesN = production.get(i).multiply(price.get(i));
 
             // Bounds check... was there a previous year?
-            costCarriedForwardPrevious = new BigDecimal(0);
+            cumulativeRecoverableCostPrevious = BigDecimal.ZERO;
             if (i > 0) {
-                costCarriedForwardPrevious = costCarriedForward.get(i - 1);
+                cumulativeRecoverableCostPrevious = cumulativeRecoverableCosts
+                        .get(i - 1);
             }
 
             // Cumulative recoverable cost for this year = sum of expenditures.
-            recoverableCostN = costCarriedForwardPrevious.add(capex.get(i).add(
-                    opex.get(i)));
+            cumulativeRecoverableCostN = cumulativeRecoverableCostPrevious
+                    .add(capex.get(i).add(opex.get(i)));
 
-            // Subtract the royalty
+            // Now work out the cost recovery base
+
+            // CostRecoveryBase = (GrossSales - Royalty) * CostRecoveryCeiling
             // TODO Could represent royalty in a better way, e.g. have a
             // slightly more abstract Royalty class that more specific Royalties
             // inherit from.
@@ -136,23 +139,21 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
             }
             costRecoveryBaseN = grossSalesN.subtract(totalRoyalty);
 
-            // Multiply it by the recovery ceiling (a percentage)
+            // Multiply it by the recovery ceiling (make sure to conver to a
+            // percentage)
             costRecoveryN = costRecoveryBaseN.multiply(costRecoveryCeiling.get(
-                    i).divide(new BigDecimal(100)));
+                    i).movePointLeft(2));
 
-            cumulativeRecoverableCost.add(recoverableCostN);
+            costsRecovered.add(costRecoveryN);
 
-            // If this year's total costs are greater than the gross sales, then
-            // the remaining cost is carried forward to next year.
-            if (recoverableCostN.compareTo(costRecoveryN) > 0) {
-                costCarriedForward
-                        .add(recoverableCostN.subtract(costRecoveryN));
-            } else {
-                costCarriedForward.add(new BigDecimal(0));
-            }
+            cumulativeRecoverableCosts.add(cumulativeRecoverableCostN
+                    .subtract(costRecoveryN));
+
         }
 
-        costRecoveryElement.setCostRecovery(cumulativeRecoverableCost);
+        costRecoveryElement.setCostRecovery(costsRecovered);
+        costRecoveryElement
+                .setCumulativeRecoverableCosts(cumulativeRecoverableCosts);
     }
 
     @Override
