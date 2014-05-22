@@ -71,7 +71,9 @@ public class FlatRoyaltyVisitor implements IContractElementVisitor {
 
         for (int i = 0; i < grossSales.size(); i++) {
             // Royalty is a single data point (hence get from index 0)
-            royaltyThisYear = grossSales.get(i).multiply(royaltyRate.get(0));
+            // Ensure to turn rate into a percentage
+            royaltyThisYear = grossSales.get(i).multiply(
+                    royaltyRate.get(0).movePointLeft(2));
             royalty.add(royaltyThisYear);
         }
 
