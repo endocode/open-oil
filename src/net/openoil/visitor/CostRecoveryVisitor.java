@@ -140,10 +140,13 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
             }
             costRecoveryBaseN = grossSalesN.subtract(totalRoyalty);
 
-            // Multiply it by the recovery ceiling (make sure to conver to a
+            // Multiply it by the recovery ceiling (make sure to convert to a
             // percentage)
             costRecoveryN = costRecoveryBaseN.multiply(costRecoveryCeiling.get(
                     i).movePointLeft(2));
+
+            // TODO This is just a check! Is it correct?
+            costRecoveryN = costRecoveryN.min(cumulativeRecoverableCostN);
 
             costsRecovered.add(costRecoveryN);
 

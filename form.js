@@ -343,7 +343,8 @@ function allSingleTextRows()
 /* Returns an array of ids to rows with one checkbox input column. */
 function allSingleBoolRows()
 {
-    return ["inflationPrice",
+    return ["rFactor",
+            "inflationPrice",
             "inflationOpex"];
 }
 
