@@ -315,7 +315,8 @@ function allInputRows()
 /* Returns array of ids to rows with multiple input columns. */
 function allMultiInputRows()
 {
-    return ["production",
+    return ["price",
+            "production",
             "costRecoveryCeiling",
             "capex"];
 }
@@ -329,8 +330,7 @@ function allSingleInputRows()
 /* Returns an array of ids to rows with one text input column. */
 function allSingleTextRows()
 {
-    return ["price",
-            "opexPerBarrel",
+    return ["opexPerBarrel",
             "corporateIncomeTax",
             "inflation",
             "exploration",
