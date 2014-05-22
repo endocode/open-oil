@@ -1,6 +1,7 @@
 package net.openoil.visitor;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -151,7 +152,7 @@ public class ProfitOilVisitor implements IContractElementVisitor {
                     .subtract(totalRoyalty.get(i))
                     .subtract(costRecovery.get(i));
 
-            profitOil.add(profitOilThisYear);
+            profitOil.add(profitOilThisYear.setScale(2, RoundingMode.UP));
         }
 
         profitOilElement.setProfitOil(profitOil);

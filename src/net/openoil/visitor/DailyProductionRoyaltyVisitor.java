@@ -181,7 +181,7 @@ public class DailyProductionRoyaltyVisitor implements IContractElementVisitor {
 
             // Royalty is currently in $, but needs storing in $mm.
             totalRoyaltyThisYear = totalRoyaltyThisYear.movePointLeft(6);
-            royalty.add(totalRoyaltyThisYear);
+            royalty.add(totalRoyaltyThisYear.setScale(2, RoundingMode.UP));
         }
 
         dailyProductionRoyaltyElement.setDailyProductionRoyalty(royalty);

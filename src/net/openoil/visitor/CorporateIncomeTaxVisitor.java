@@ -1,6 +1,7 @@
 package net.openoil.visitor;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -140,7 +141,7 @@ public class CorporateIncomeTaxVisitor implements IContractElementVisitor {
                     .subtract(governmentProfitOil.get(y));
             taxThisYear = preTaxProfit.multiply(corporateIncomeTaxRate);
 
-            corporateIncomeTax.add(taxThisYear);
+            corporateIncomeTax.add(taxThisYear.setScale(2, RoundingMode.UP));
         }
 
         corporateIncomeTaxElement.setTax(corporateIncomeTax);

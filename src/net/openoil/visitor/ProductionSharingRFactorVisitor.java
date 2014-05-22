@@ -170,8 +170,8 @@ public class ProductionSharingRFactorVisitor implements IContractElementVisitor 
             BigDecimal companyProfit = profitOilThisYear
                     .multiply(new BigDecimal(1 - P));
 
-            governmentShare.add(governmentProfit);
-            companyShare.add(companyProfit);
+            governmentShare.add(governmentProfit.setScale(2, RoundingMode.UP));
+            companyShare.add(companyProfit.setScale(2, RoundingMode.UP));
 
             // Determine next year's R-Factor
             // R_n+1 = X / Y, where:

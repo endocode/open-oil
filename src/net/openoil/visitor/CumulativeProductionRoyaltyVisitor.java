@@ -1,6 +1,7 @@
 package net.openoil.visitor;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -171,7 +172,7 @@ public class CumulativeProductionRoyaltyVisitor implements
             for (BigDecimal r : royaltyThisYear) {
                 totalRoyaltyThisYear = totalRoyaltyThisYear.add(r);
             }
-            royalty.add(totalRoyaltyThisYear);
+            royalty.add(totalRoyaltyThisYear.setScale(2, RoundingMode.UP));
         }
 
         cumulativeProductionRoyaltyElement

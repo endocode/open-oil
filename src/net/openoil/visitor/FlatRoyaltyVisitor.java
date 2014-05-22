@@ -1,6 +1,7 @@
 package net.openoil.visitor;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +77,7 @@ public class FlatRoyaltyVisitor implements IContractElementVisitor {
             // Ensure to turn rate into a percentage
             royaltyThisYear = grossSales.get(i).multiply(
                     royaltyRate.get(0).movePointLeft(2));
-            royalty.add(royaltyThisYear);
+            royalty.add(royaltyThisYear.setScale(2, RoundingMode.UP));
         }
 
         flatRoyaltyElement.setRoyalty(royalty);

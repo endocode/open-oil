@@ -1,6 +1,7 @@
 package net.openoil.visitor;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -149,10 +150,10 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
             // TODO This is just a check! Is it correct?
             costRecoveryN = costRecoveryN.min(cumulativeRecoverableCostN);
 
-            costsRecovered.add(costRecoveryN);
+            costsRecovered.add(costRecoveryN.setScale(2, RoundingMode.UP));
 
-            cumulativeRecoverableCosts.add(cumulativeRecoverableCostN
-                    .subtract(costRecoveryN));
+            cumulativeRecoverableCosts.add(cumulativeRecoverableCostN.subtract(
+                    costRecoveryN).setScale(2, RoundingMode.UP));
 
         }
 

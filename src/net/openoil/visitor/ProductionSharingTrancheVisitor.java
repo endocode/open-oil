@@ -167,8 +167,9 @@ public class ProductionSharingTrancheVisitor implements IContractElementVisitor 
             BigDecimal companyShareThisYear = profitOil.get(y).multiply(
                     companyRateTrancheN);
 
-            governmentShare.add(governmentShareThisYear);
-            companyShare.add(companyShareThisYear);
+            governmentShare.add(governmentShareThisYear.setScale(2,
+                    RoundingMode.UP));
+            companyShare.add(companyShareThisYear.setScale(2, RoundingMode.UP));
         }
 
         productionSharingTrancheElement.setGovernmentShare(governmentShare);
