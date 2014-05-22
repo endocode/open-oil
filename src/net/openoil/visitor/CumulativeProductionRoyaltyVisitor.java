@@ -122,6 +122,9 @@ public class CumulativeProductionRoyaltyVisitor implements
                 if (cumulativeProductionThisYear.compareTo(lowerBound) >= 0
                         && cumulativeProductionThisYear.compareTo(upperBound) < 0) {
                     break;
+                } else if (trancheN == tranches.size() - 1) {
+                    // We've reached the top tranche
+                    break;
                 }
             }
 

@@ -124,6 +124,9 @@ public class DailyProductionRoyaltyVisitor implements IContractElementVisitor {
                 if (adp.compareTo(lowerBound) > 0
                         && adp.compareTo(upperBound) < 0) {
                     break;
+                } else if (trancheN == tranches.size() - 1) {
+                    // We've reached the top tranche
+                    break;
                 }
             }
 

@@ -156,6 +156,9 @@ public class ProductionSharingTrancheVisitor implements IContractElementVisitor 
                             ProductionSharingTrancheElement.COMPANY_SHARE)
                             .movePointLeft(2);
                     break;
+                } else if (trancheN == tranches.size() - 1) {
+                    // We've reached the top tranche
+                    break;
                 }
             }
 
