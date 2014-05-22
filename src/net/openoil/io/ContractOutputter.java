@@ -34,6 +34,8 @@ public class ContractOutputter {
         addToOutput(outputStr, "Profit Oil", outputs.getProfitOil());
         addToOutput(outputStr, "Government Share", outputs.getGovernmentShare());
         addToOutput(outputStr, "Company Share", outputs.getCompanyShare());
+        addToOutput(outputStr, "Corporate Income Tax",
+                outputs.getCorporateIncomeTax());
 
         System.out.println(outputStr);
     }

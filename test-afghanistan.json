@@ -9,5 +9,6 @@
     flatRoyaltyRate: [0.15],
     opexPerBarrel: [12],
     costRecoveryCeiling: [100, 100, 100, 100, 100, 100, 100],
-    rFactor: [ true ]
+    rFactor: [ true ],
+    corporateIncomeTaxRate: [30]
 }

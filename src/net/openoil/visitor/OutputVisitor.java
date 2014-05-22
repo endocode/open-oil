@@ -1,6 +1,7 @@
 package net.openoil.visitor;
 
 import net.openoil.element.CapexElement;
+import net.openoil.element.CorporateIncomeTaxElement;
 import net.openoil.element.CostRecoveryElement;
 import net.openoil.element.CumulativeProductionRoyaltyElement;
 import net.openoil.element.DailyProductionRoyaltyElement;
@@ -110,5 +111,10 @@ public class OutputVisitor implements IContractElementVisitor {
             this.outputs.setCompanyShare(productionSharingRFactorElement
                     .getCompanyShare());
         }
+    }
+
+    @Override
+    public void visit(CorporateIncomeTaxElement corporateIncomeTax) {
+        this.outputs.setCorporateIncomeTax(corporateIncomeTax.getTax());
     }
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.openoil.element.CapexElement;
+import net.openoil.element.CorporateIncomeTaxElement;
 import net.openoil.element.CostRecoveryElement;
 import net.openoil.element.CumulativeProductionRoyaltyElement;
 import net.openoil.element.DailyProductionRoyaltyElement;
@@ -186,5 +187,11 @@ public class ProductionSharingRFactorVisitor implements IContractElementVisitor 
 
         productionSharingRFactorElement.setGovernmentShare(governmentShare);
         productionSharingRFactorElement.setCompanyShare(companyShare);
+    }
+
+    @Override
+    public void visit(CorporateIncomeTaxElement corporateIncomeTax) {
+        // Do nothing.
+        return;
     }
 }

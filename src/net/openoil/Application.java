@@ -9,6 +9,7 @@ import net.openoil.element.IContractElement;
 import net.openoil.io.ContractOutputter;
 import net.openoil.io.InputTable;
 import net.openoil.io.OutputTable;
+import net.openoil.visitor.CorporateIncomeTaxVisitor;
 import net.openoil.visitor.CostRecoveryVisitor;
 import net.openoil.visitor.CumulativeProductionRoyaltyVisitor;
 import net.openoil.visitor.DailyProductionRoyaltyVisitor;
@@ -72,6 +73,7 @@ public class Application {
         contract.accept(new ProfitOilVisitor());
         contract.accept(new ProductionSharingTrancheVisitor());
         contract.accept(new ProductionSharingRFactorVisitor());
+        contract.accept(new CorporateIncomeTaxVisitor());
 
         // Gather all the final values to be output.
         OutputTable outputs = new OutputTable();

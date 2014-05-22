@@ -39,6 +39,8 @@ public class OutputTable {
 
     private List<BigDecimal> cumulativeRecoverableCosts = new ArrayList<BigDecimal>();
 
+    private List<BigDecimal> corporateIncomeTax = new ArrayList<BigDecimal>();
+
     public List<Integer> getYear() {
         return year;
     }
@@ -153,4 +155,13 @@ public class OutputTable {
     public List<BigDecimal> getCumulativeRecoverableCosts() {
         return this.cumulativeRecoverableCosts;
     }
+
+    public List<BigDecimal> getCorporateIncomeTax() {
+        return corporateIncomeTax;
+    }
+
+    public void setCorporateIncomeTax(List<BigDecimal> corporateIncomeTax) {
+        this.corporateIncomeTax = corporateIncomeTax;
+    }
+
 }

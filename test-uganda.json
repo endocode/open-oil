@@ -5,6 +5,7 @@
     capex: [50000, 100000, 150000, 150000, 200000, 200000, 100000],
     opexPerBarrel: [12],
     costRecoveryCeiling: [60, 60, 60, 60, 60, 60, 60],
+    corporateIncomeTaxRate: [30],
     dailyProductionRoyaltyTranche: [
         [0, 2.5, 5],
         [2.5, 5, 7.5],

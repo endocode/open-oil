@@ -331,7 +331,7 @@ function allSingleInputRows()
 function allSingleTextRows()
 {
     return ["opexPerBarrel",
-            "corporateIncomeTax",
+            "corporateIncomeTaxRate",
             "inflation",
             "exploration",
             "acreage",

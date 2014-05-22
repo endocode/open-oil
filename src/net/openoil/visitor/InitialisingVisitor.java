@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import net.openoil.element.CapexElement;
+import net.openoil.element.CorporateIncomeTaxElement;
 import net.openoil.element.CostRecoveryElement;
 import net.openoil.element.CumulativeProductionRoyaltyElement;
 import net.openoil.element.DailyProductionRoyaltyElement;
@@ -114,6 +115,11 @@ public class InitialisingVisitor implements IContractElementVisitor {
     public void visit(
             ProductionSharingRFactorElement productionSharingRFactorElement) {
         productionSharingRFactorElement.setrFactor(inputs.getRFactor());
+    }
+
+    @Override
+    public void visit(CorporateIncomeTaxElement corporateIncomeTax) {
+        corporateIncomeTax.setTaxRate(inputs.getCorporateIncomeTaxRate());
     }
 
 }

@@ -35,6 +35,8 @@ public class InputTable {
 
     private List<Boolean> rFactor = new ArrayList<Boolean>();
 
+    private List<BigDecimal> corporateIncomeTaxRate = new ArrayList<BigDecimal>();
+
     public List<Integer> getYear() {
         return year;
     }
@@ -85,5 +87,14 @@ public class InputTable {
 
     public List<Boolean> getRFactor() {
         return rFactor;
+    }
+
+    public List<BigDecimal> getCorporateIncomeTaxRate() {
+        return this.corporateIncomeTaxRate;
+    }
+
+    public void setCorporateIncomeTaxRate(
+            List<BigDecimal> corporateIncomeTaxRate) {
+        this.corporateIncomeTaxRate = corporateIncomeTaxRate;
     }
 }
