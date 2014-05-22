@@ -15,6 +15,7 @@ import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
+import net.openoil.element.ProductionSharingRFactorElement;
 import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
 import net.openoil.element.SurfaceRentalElement;
@@ -28,13 +29,7 @@ public class ProductionSharingTrancheVisitor implements IContractElementVisitor 
 
     private List<BigDecimal> production = new ArrayList<BigDecimal>();
 
-    private List<BigDecimal> price = new ArrayList<BigDecimal>();
-
     private List<BigDecimal> profitOil = new ArrayList<BigDecimal>();
-
-    private List<BigDecimal> governmentShare = new ArrayList<BigDecimal>();
-
-    private List<BigDecimal> companyShare = new ArrayList<BigDecimal>();
 
     @Override
     public void visit(YearElement year) {
@@ -43,7 +38,8 @@ public class ProductionSharingTrancheVisitor implements IContractElementVisitor 
 
     @Override
     public void visit(PriceElement price) {
-        this.price = price.getPrice();
+        // Do nothing.
+        return;
     }
 
     @Override
@@ -176,5 +172,12 @@ public class ProductionSharingTrancheVisitor implements IContractElementVisitor 
 
         productionSharingTrancheElement.setGovernmentShare(governmentShare);
         productionSharingTrancheElement.setCompanyShare(companyShare);
+    }
+
+    @Override
+    public void visit(
+            ProductionSharingRFactorElement productionSharingRFactorElement) {
+        // Do nothing.
+        return;
     }
 }

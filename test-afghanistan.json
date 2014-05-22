@@ -8,5 +8,6 @@
     opexPerBarrel: [12],
     flatRoyaltyRate: [0.15],
     opexPerBarrel: [12],
-    costRecoveryCeiling: [100, 100, 100, 100, 100, 100, 100]
+    costRecoveryCeiling: [100, 100, 100, 100, 100, 100, 100],
+    rFactor: [ true ]
 }

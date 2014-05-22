@@ -12,6 +12,7 @@ import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
+import net.openoil.element.ProductionSharingRFactorElement;
 import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
 import net.openoil.element.SurfaceRentalElement;
@@ -119,6 +120,13 @@ public class SurfaceRentalVisitor implements IContractElementVisitor {
     @Override
     public void visit(
             ProductionSharingTrancheElement productionSharingTrancheElement) {
+        // Do nothing.
+        return;
+    }
+
+    @Override
+    public void visit(
+            ProductionSharingRFactorElement productionSharingRFactorElement) {
         // Do nothing.
         return;
     }

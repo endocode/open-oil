@@ -16,6 +16,7 @@ import net.openoil.visitor.FlatRoyaltyVisitor;
 import net.openoil.visitor.InitialisingVisitor;
 import net.openoil.visitor.OpexVisitor;
 import net.openoil.visitor.OutputVisitor;
+import net.openoil.visitor.ProductionSharingRFactorVisitor;
 import net.openoil.visitor.ProductionSharingTrancheVisitor;
 import net.openoil.visitor.ProfitOilVisitor;
 import net.openoil.visitor.SurfaceRentalVisitor;
@@ -70,6 +71,7 @@ public class Application {
         contract.accept(new CostRecoveryVisitor());
         contract.accept(new ProfitOilVisitor());
         contract.accept(new ProductionSharingTrancheVisitor());
+        contract.accept(new ProductionSharingRFactorVisitor());
 
         // Gather all the final values to be output.
         OutputTable outputs = new OutputTable();

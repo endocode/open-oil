@@ -8,6 +8,7 @@ import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
+import net.openoil.element.ProductionSharingRFactorElement;
 import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
 import net.openoil.element.SurfaceRentalElement;
@@ -91,9 +92,23 @@ public class OutputVisitor implements IContractElementVisitor {
     @Override
     public void visit(
             ProductionSharingTrancheElement productionSharingTrancheElement) {
-        this.outputs.setGovernmentShare(productionSharingTrancheElement
-                .getGovernmentShare());
-        this.outputs.setCompanyShare(productionSharingTrancheElement
-                .getCompanyShare());
+
+        if (!productionSharingTrancheElement.getCompanyShare().isEmpty()) {
+            this.outputs.setGovernmentShare(productionSharingTrancheElement
+                    .getGovernmentShare());
+            this.outputs.setCompanyShare(productionSharingTrancheElement
+                    .getCompanyShare());
+        }
+    }
+
+    @Override
+    public void visit(
+            ProductionSharingRFactorElement productionSharingRFactorElement) {
+        if (!productionSharingRFactorElement.getCompanyShare().isEmpty()) {
+            this.outputs.setGovernmentShare(productionSharingRFactorElement
+                    .getGovernmentShare());
+            this.outputs.setCompanyShare(productionSharingRFactorElement
+                    .getCompanyShare());
+        }
     }
 }

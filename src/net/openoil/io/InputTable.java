@@ -33,6 +33,8 @@ public class InputTable {
 
     private List<List<BigDecimal>> productionSharingTranche = new ArrayList<List<BigDecimal>>();
 
+    private List<Boolean> rFactor = new ArrayList<Boolean>();
+
     public List<Integer> getYear() {
         return year;
     }
@@ -81,4 +83,7 @@ public class InputTable {
         return this.productionSharingTranche;
     }
 
+    public List<Boolean> getRFactor() {
+        return rFactor;
+    }
 }
