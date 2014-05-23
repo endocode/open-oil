@@ -70,6 +70,7 @@ public class ContractOutputter {
         addToOutput("Company Share", outputs.getCompanyShare());
         addToOutput("Corporate Income Tax", outputs.getCorporateIncomeTax(),
                 CIT_DESC);
+        addToOutput("State Participation", outputs.getStateParticipation());
 
         try {
             columnNames = new String[COLUMNS];

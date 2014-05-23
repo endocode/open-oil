@@ -18,14 +18,13 @@ import net.openoil.element.ProductionElement;
 import net.openoil.element.ProductionSharingRFactorElement;
 import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
+import net.openoil.element.StateParticipationElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
 
 public class ProductionSharingRFactorVisitor implements IContractElementVisitor {
 
     private List<Integer> year = new ArrayList<Integer>();
-
-    private List<BigDecimal> production = new ArrayList<BigDecimal>();
 
     private List<BigDecimal> capex = new ArrayList<BigDecimal>();
 
@@ -48,7 +47,8 @@ public class ProductionSharingRFactorVisitor implements IContractElementVisitor 
 
     @Override
     public void visit(ProductionElement production) {
-        this.production = production.getProduction();
+        // Do nothing.
+        return;
     }
 
     @Override
@@ -191,6 +191,12 @@ public class ProductionSharingRFactorVisitor implements IContractElementVisitor 
 
     @Override
     public void visit(CorporateIncomeTaxElement corporateIncomeTax) {
+        // Do nothing.
+        return;
+    }
+
+    @Override
+    public void visit(StateParticipationElement stateParticipationElement) {
         // Do nothing.
         return;
     }

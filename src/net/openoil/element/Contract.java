@@ -29,6 +29,7 @@ public class Contract implements IContractElement {
         contractElements.add(new ProductionSharingTrancheElement());
         contractElements.add(new ProductionSharingRFactorElement());
         contractElements.add(new CorporateIncomeTaxElement());
+        contractElements.add(new StateParticipationElement());
     }
 
     /**

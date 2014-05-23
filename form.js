@@ -337,7 +337,7 @@ function allSingleTextRows()
             "acreage",
             "rentalPerKm",
             "flatRoyaltyRate",
-            "stateParticipation"];
+            "stateParticipationRate"];
 }
 
 /* Returns an array of ids to rows with one checkbox input column. */

@@ -20,13 +20,15 @@ import net.openoil.element.StateParticipationElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
 
-public class OpexVisitor implements IContractElementVisitor {
+public class StateParticipationVisitor implements IContractElementVisitor {
 
-    private List<BigDecimal> production = new ArrayList<BigDecimal>();
+    private List<Integer> year = new ArrayList<Integer>();
+
+    private List<BigDecimal> profitOil = new ArrayList<BigDecimal>();
 
     @Override
-    public void visit(ProductionElement production) {
-        this.production = production.getProduction();
+    public void visit(YearElement year) {
+        this.year = year.getYear();
     }
 
     @Override
@@ -36,7 +38,7 @@ public class OpexVisitor implements IContractElementVisitor {
     }
 
     @Override
-    public void visit(YearElement year) {
+    public void visit(ProductionElement production) {
         // Do nothing.
         return;
     }
@@ -59,25 +61,10 @@ public class OpexVisitor implements IContractElementVisitor {
         return;
     }
 
-    /**
-     * Calculates the total operating expenditure (production * opexPerBarrel).
-     */
     @Override
     public void visit(OpexElement opexElement) {
-        if (null == opexElement.getOpexPerBarrel()
-                || opexElement.getOpexPerBarrel().size() == 0) {
-            return;
-        }
-
-        // Single data point (hence get 0)
-        BigDecimal opexPerBarrel = opexElement.getOpexPerBarrel().get(0);
-        List<BigDecimal> opex = new ArrayList<BigDecimal>();
-
-        for (int i = 0; i < production.size(); i++) {
-            opex.add(production.get(i).multiply(opexPerBarrel));
-        }
-
-        opexElement.setOpex(opex);
+        // Do nothing.
+        return;
     }
 
     @Override
@@ -102,8 +89,7 @@ public class OpexVisitor implements IContractElementVisitor {
 
     @Override
     public void visit(ProfitOilElement profitOilElement) {
-        // Do nothing.
-        return;
+        this.profitOil = profitOilElement.getProfitOil();
     }
 
     @Override
@@ -128,8 +114,27 @@ public class OpexVisitor implements IContractElementVisitor {
 
     @Override
     public void visit(StateParticipationElement stateParticipationElement) {
-        // Do nothing.
-        return;
-    }
 
+        List<BigDecimal> stateParticipationRate = stateParticipationElement
+                .getStateParticipationRate();
+
+        // Was state participation supplied?
+        if (null == stateParticipationRate || stateParticipationRate.isEmpty()) {
+            return;
+        }
+
+        List<BigDecimal> stateParticipation = new ArrayList<BigDecimal>();
+
+        BigDecimal stateParticipationN;
+        BigDecimal participationRateN;
+        for (int y = 0; y < year.size(); y++) {
+            // Rate is a static value, therefore get first element
+            participationRateN = stateParticipationRate.get(0).movePointLeft(2);
+            stateParticipationN = profitOil.get(y).multiply(participationRateN);
+
+            stateParticipation.add(stateParticipationN);
+        }
+
+        stateParticipationElement.setStateParticipation(stateParticipation);
+    }
 }

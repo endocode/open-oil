@@ -12,6 +12,7 @@ import net.openoil.element.ProductionElement;
 import net.openoil.element.ProductionSharingRFactorElement;
 import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
+import net.openoil.element.StateParticipationElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
 
@@ -52,5 +53,7 @@ public interface IContractElementVisitor {
             ProductionSharingRFactorElement productionSharingRFactorElement);
 
     public void visit(CorporateIncomeTaxElement corporateIncomeTax);
+
+    public void visit(StateParticipationElement stateParticipationElement);
 
 }

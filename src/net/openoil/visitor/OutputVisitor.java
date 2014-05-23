@@ -12,6 +12,7 @@ import net.openoil.element.ProductionElement;
 import net.openoil.element.ProductionSharingRFactorElement;
 import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
+import net.openoil.element.StateParticipationElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
 import net.openoil.io.OutputTable;
@@ -116,5 +117,11 @@ public class OutputVisitor implements IContractElementVisitor {
     @Override
     public void visit(CorporateIncomeTaxElement corporateIncomeTax) {
         this.outputs.setCorporateIncomeTax(corporateIncomeTax.getTax());
+    }
+
+    @Override
+    public void visit(StateParticipationElement stateParticipationElement) {
+        this.outputs.setStateParticipation(stateParticipationElement
+                .getStateParticipation());
     }
 }

@@ -19,6 +19,7 @@ import net.openoil.element.ProductionElement;
 import net.openoil.element.ProductionSharingRFactorElement;
 import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
+import net.openoil.element.StateParticipationElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
 
@@ -216,6 +217,12 @@ public class DailyProductionRoyaltyVisitor implements IContractElementVisitor {
 
     @Override
     public void visit(CorporateIncomeTaxElement corporateIncomeTax) {
+        // Do nothing.
+        return;
+    }
+
+    @Override
+    public void visit(StateParticipationElement stateParticipationElement) {
         // Do nothing.
         return;
     }

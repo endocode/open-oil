@@ -37,6 +37,8 @@ public class InputTable {
 
     private List<BigDecimal> corporateIncomeTaxRate = new ArrayList<BigDecimal>();
 
+    private List<BigDecimal> stateParticipationRate = new ArrayList<BigDecimal>();;
+
     public List<Integer> getYear() {
         return year;
     }
@@ -96,5 +98,9 @@ public class InputTable {
     public void setCorporateIncomeTaxRate(
             List<BigDecimal> corporateIncomeTaxRate) {
         this.corporateIncomeTaxRate = corporateIncomeTaxRate;
+    }
+
+    public List<BigDecimal> getStateParticipationRate() {
+        return this.stateParticipationRate;
     }
 }

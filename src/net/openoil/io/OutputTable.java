@@ -41,6 +41,8 @@ public class OutputTable {
 
     private List<BigDecimal> corporateIncomeTax = new ArrayList<BigDecimal>();
 
+    private List<BigDecimal> stateParticipation = new ArrayList<BigDecimal>();;
+
     public List<Integer> getYear() {
         return year;
     }
@@ -162,6 +164,14 @@ public class OutputTable {
 
     public void setCorporateIncomeTax(List<BigDecimal> corporateIncomeTax) {
         this.corporateIncomeTax = corporateIncomeTax;
+    }
+
+    public List<BigDecimal> getStateParticipation() {
+        return this.stateParticipation;
+    }
+
+    public void setStateParticipation(List<BigDecimal> stateParticipation) {
+        this.stateParticipation = stateParticipation;
     }
 
 }

@@ -20,6 +20,7 @@ import net.openoil.visitor.OutputVisitor;
 import net.openoil.visitor.ProductionSharingRFactorVisitor;
 import net.openoil.visitor.ProductionSharingTrancheVisitor;
 import net.openoil.visitor.ProfitOilVisitor;
+import net.openoil.visitor.StateParticipationVisitor;
 import net.openoil.visitor.SurfaceRentalVisitor;
 
 import com.google.gson.Gson;
@@ -74,6 +75,7 @@ public class Application {
         contract.accept(new ProductionSharingTrancheVisitor());
         contract.accept(new ProductionSharingRFactorVisitor());
         contract.accept(new CorporateIncomeTaxVisitor());
+        contract.accept(new StateParticipationVisitor());
 
         // Gather all the final values to be output.
         OutputTable outputs = new OutputTable();
