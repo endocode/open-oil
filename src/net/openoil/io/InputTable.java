@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.openoil.exception.ParameterException;
+
 /**
  * Contains all data input to the algorithm.
  */
@@ -37,7 +39,34 @@ public class InputTable {
 
     private List<BigDecimal> corporateIncomeTaxRate = new ArrayList<BigDecimal>();
 
-    private List<BigDecimal> stateParticipationRate = new ArrayList<BigDecimal>();;
+    private List<BigDecimal> stateParticipationRate = new ArrayList<BigDecimal>();
+
+    /**
+     * Verifies that all required inputs have been entered correctly.
+     */
+    public void validateRequiredInputs() throws ParameterException {
+        // TODO: Temporary: need a better way of validating input and ensuring
+        // all required data is given... e.g. the dependency graph idea.
+        if (null == year || year.isEmpty()) {
+            throw new ParameterException("Year is missing from input");
+        }
+        if (null == price || price.isEmpty()) {
+            throw new ParameterException("Price is missing from input");
+        }
+        if (null == production || production.isEmpty()) {
+            throw new ParameterException("Production is missing from input");
+        }
+        if (null == capex || capex.isEmpty()) {
+            throw new ParameterException("Capex is missing from input");
+        }
+        if (null == opexPerBarrel || opexPerBarrel.isEmpty()) {
+            throw new ParameterException("Opex is missing from input");
+        }
+        if (null == costRecoveryCeiling || costRecoveryCeiling.isEmpty()) {
+            throw new ParameterException(
+                    "Cost recovery ceiling is missing from input");
+        }
+    }
 
     public List<Integer> getYear() {
         return year;

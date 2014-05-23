@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import net.openoil.element.Contract;
 import net.openoil.element.IContractElement;
+import net.openoil.exception.ParameterException;
 import net.openoil.io.ContractOutputter;
 import net.openoil.io.InputTable;
 import net.openoil.io.OutputTable;
@@ -24,6 +25,7 @@ import net.openoil.visitor.StateParticipationVisitor;
 import net.openoil.visitor.SurfaceRentalVisitor;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 public class Application {
 
@@ -53,9 +55,17 @@ public class Application {
 
             // Convert JSON string to InputTable
             inputs = gson.fromJson(br, InputTable.class);
+            inputs.validateRequiredInputs();
         } catch (IOException e) {
             // TODO Proper error handling
             e.printStackTrace();
+            System.exit(1);
+        } catch (ParameterException e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        } catch (JsonSyntaxException e) {
+            System.out
+                    .println("There was a problem with the JSON input. Please ensure all numerical values are correctly input.");
             System.exit(1);
         }
 
