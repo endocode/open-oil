@@ -7,6 +7,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 import net.openoil.element.FlatRoyaltyElement;
+import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
 import net.openoil.element.SurfaceRentalElement;
@@ -106,6 +107,41 @@ public class Harness {
         return element;
     }
 
+    // OPEX
+
+    public static OpexElement getFilledOpexElement() {
+        OpexElement element = getOpexElement();
+
+        element.setOpex(getOpex());
+
+        return element;
+    }
+
+    public static OpexElement getOpexElement() {
+        OpexElement element = new OpexElement();
+
+        element.setOpexPerBarrel(getOpexPerBarrel());
+
+        return element;
+    }
+
+    public static List<BigDecimal> getOpex() {
+        List<BigDecimal> opex = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        opex.add(new BigDecimal(0));
+        opex.add(new BigDecimal(0));
+        opex.add(new BigDecimal(0));
+        opex.add(new BigDecimal(0));
+        opex.add(new BigDecimal("14.07"));
+        opex.add(new BigDecimal("141.00"));
+        opex.add(new BigDecimal("128.32"));
+        opex.add(new BigDecimal("126.44"));
+
+        assertEquals(YEAR_COUNT, opex.size());
+
+        return opex;
+    }
+
     // SURFACE RENTAL PRIVATE
 
     private static List<BigDecimal> getRentalPerKm() {
@@ -190,6 +226,18 @@ public class Harness {
         assertEquals(YEAR_COUNT, production.size());
 
         return production;
+    }
+
+    // OPEX PRIVATE
+
+    private static List<BigDecimal> getOpexPerBarrel() {
+        List<BigDecimal> opexPerBarrel = new ArrayList<BigDecimal>(1);
+
+        opexPerBarrel.add(new BigDecimal(12));
+
+        assertEquals(1, opexPerBarrel.size());
+
+        return opexPerBarrel;
     }
 
 }
