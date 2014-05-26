@@ -6,6 +6,9 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+import net.openoil.element.FlatRoyaltyElement;
+import net.openoil.element.PriceElement;
+import net.openoil.element.ProductionElement;
 import net.openoil.element.SurfaceRentalElement;
 
 public class Harness {
@@ -48,6 +51,63 @@ public class Harness {
         return expected;
     }
 
+    // FLAT ROYALTY
+
+    public static FlatRoyaltyElement getFilledFlatRoyaltyElement() {
+        FlatRoyaltyElement element = getFlatRoyaltyElement();
+
+        element.setRoyalty(getFlatRoyalty());
+
+        return element;
+    }
+
+    public static FlatRoyaltyElement getFlatRoyaltyElement() {
+        FlatRoyaltyElement element = new FlatRoyaltyElement();
+
+        element.setRoyaltyRate(getFlatRoyaltyRate());
+
+        return element;
+    }
+
+    public static List<BigDecimal> getFlatRoyalty() {
+        List<BigDecimal> expected = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        expected.add(new BigDecimal(0));
+        expected.add(new BigDecimal(0));
+        expected.add(new BigDecimal(0));
+        expected.add(new BigDecimal(0));
+        expected.add(new BigDecimal("17.58"));
+        expected.add(new BigDecimal("176.25"));
+        expected.add(new BigDecimal("160.40"));
+        expected.add(new BigDecimal("158.04"));
+
+        assertEquals(YEAR_COUNT, expected.size());
+
+        return expected;
+    }
+
+    // PRICE
+
+    public static PriceElement getFilledPriceElement() {
+        PriceElement element = new PriceElement();
+
+        element.setPrice(getPrice());
+
+        return element;
+    }
+
+    // PRODUCTION
+
+    public static ProductionElement getFilledProductionElement() {
+        ProductionElement element = new ProductionElement();
+
+        element.setProduction(getProduction());
+
+        return element;
+    }
+
+    // SURFACE RENTAL PRIVATE
+
     private static List<BigDecimal> getRentalPerKm() {
         List<BigDecimal> rentals = new ArrayList<BigDecimal>(YEAR_COUNT);
 
@@ -80,6 +140,56 @@ public class Harness {
         assertEquals(YEAR_COUNT, acreages.size());
 
         return acreages;
+    }
+
+    // FLAT ROYALTY PRIVATE
+
+    private static List<BigDecimal> getFlatRoyaltyRate() {
+        List<BigDecimal> flatRate = new ArrayList<BigDecimal>(1);
+
+        flatRate.add(new BigDecimal(15));
+
+        assertEquals(1, flatRate.size());
+
+        return flatRate;
+    }
+
+    // PRICE PRIVATE
+
+    private static List<BigDecimal> getPrice() {
+        List<BigDecimal> prices = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        prices.add(new BigDecimal(100));
+        prices.add(new BigDecimal(100));
+        prices.add(new BigDecimal(100));
+        prices.add(new BigDecimal(100));
+        prices.add(new BigDecimal(100));
+        prices.add(new BigDecimal(100));
+        prices.add(new BigDecimal(100));
+        prices.add(new BigDecimal(100));
+
+        assertEquals(YEAR_COUNT, prices.size());
+
+        return prices;
+    }
+
+    // PRODUCTION PRIVATE
+
+    private static List<BigDecimal> getProduction() {
+        List<BigDecimal> production = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        production.add(new BigDecimal(0));
+        production.add(new BigDecimal(0));
+        production.add(new BigDecimal(0));
+        production.add(new BigDecimal(0));
+        production.add(new BigDecimal(1172));
+        production.add(new BigDecimal(11750));
+        production.add(new BigDecimal(10693));
+        production.add(new BigDecimal(10536));
+
+        assertEquals(YEAR_COUNT, production.size());
+
+        return production;
     }
 
 }

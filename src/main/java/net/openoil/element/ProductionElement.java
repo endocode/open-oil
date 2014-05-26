@@ -6,8 +6,8 @@ import java.util.List;
 import net.openoil.visitor.IContractElementVisitor;
 
 /**
- * Production describes how many million barrels of oil are produced on a
- * year-by-year basis.
+ * Production describes how many thousand barrels of oil are produced
+ * on a year-by-year basis.
  */
 public class ProductionElement implements IContractElement {
 

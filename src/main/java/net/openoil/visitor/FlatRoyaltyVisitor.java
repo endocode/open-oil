@@ -64,7 +64,7 @@ public class FlatRoyaltyVisitor implements IContractElementVisitor {
 
         for (int i = 0; i < this.price.size(); i++) {
             priceThisYear = this.price.get(i);
-            productionThisYear = this.production.get(i);
+            productionThisYear = this.production.get(i).movePointLeft(3);
             grossSales.add(priceThisYear.multiply(productionThisYear));
         }
 
