@@ -6,6 +6,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+import net.openoil.element.CapexElement;
+import net.openoil.element.CostRecoveryElement;
 import net.openoil.element.CumulativeProductionRoyaltyElement;
 import net.openoil.element.DailyProductionRoyaltyElement;
 import net.openoil.element.FlatRoyaltyElement;
@@ -225,6 +227,69 @@ public class Harness {
         return cumulative;
     }
 
+    // CAPEX
+
+    public static CapexElement getFilledCapexElement() {
+        CapexElement element = new CapexElement();
+
+        element.setCapex(getCapex());
+
+        return element;
+    }
+
+    // COST RECOVERY
+
+    public static CostRecoveryElement getFilledCostRecoveryElement() {
+        CostRecoveryElement element = getCostRecoveryElement();
+
+        element.setCostRecovery(getCostRecovery());
+        element.setCumulativeRecoverableCosts(getCumulativeRecoverableCosts());
+
+        return element;
+    }
+
+    public static CostRecoveryElement getCostRecoveryElement() {
+        CostRecoveryElement element = new CostRecoveryElement();
+
+        element.setCostRecoveryCeiling(getCostRecoveryCeiling());
+
+        return element;
+    }
+
+    public static List<BigDecimal> getCostRecovery() {
+        List<BigDecimal> recovery = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        recovery.add(new BigDecimal(0));
+        recovery.add(new BigDecimal(0));
+        recovery.add(new BigDecimal(0));
+        recovery.add(new BigDecimal(0));
+        recovery.add(new BigDecimal("57.72"));
+        recovery.add(new BigDecimal("536.88"));
+        recovery.add(new BigDecimal("453.31"));
+        recovery.add(new BigDecimal("392.67"));
+
+        assertEquals(YEAR_COUNT, recovery.size());
+
+        return recovery;
+    }
+
+    public static List<BigDecimal> getCumulativeRecoverableCosts() {
+        List<BigDecimal> costs = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        costs.add(new BigDecimal(50));
+        costs.add(new BigDecimal(150));
+        costs.add(new BigDecimal(300));
+        costs.add(new BigDecimal(450));
+        costs.add(new BigDecimal("606.36"));
+        costs.add(new BigDecimal("410.49"));
+        costs.add(new BigDecimal("185.51"));
+        costs.add(new BigDecimal("69.29"));
+
+        assertEquals(YEAR_COUNT, costs.size());
+
+        return costs;
+    }
+
     // SURFACE RENTAL PRIVATE
 
     private static List<BigDecimal> getRentalPerKm() {
@@ -408,6 +473,44 @@ public class Harness {
         assertEquals(valueCount, tranche.size());
 
         return tranche;
+    }
+
+    // CAPEX PRIVATE
+
+    private static List<BigDecimal> getCapex() {
+        List<BigDecimal> capex = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        capex.add(new BigDecimal(50));
+        capex.add(new BigDecimal(100));
+        capex.add(new BigDecimal(150));
+        capex.add(new BigDecimal(150));
+        capex.add(new BigDecimal(200));
+        capex.add(new BigDecimal(200));
+        capex.add(new BigDecimal(100));
+        capex.add(new BigDecimal(150));
+
+        assertEquals(YEAR_COUNT, capex.size());
+
+        return capex;
+    }
+
+    // COST RECOVERY PRIVATE
+
+    private static List<BigDecimal> getCostRecoveryCeiling() {
+        List<BigDecimal> list = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        list.add(new BigDecimal(60));
+        list.add(new BigDecimal(61));
+        list.add(new BigDecimal(62));
+        list.add(new BigDecimal(63));
+        list.add(new BigDecimal(64));
+        list.add(new BigDecimal(65));
+        list.add(new BigDecimal(66));
+        list.add(new BigDecimal(67));
+
+        assertEquals(YEAR_COUNT, list.size());
+
+        return list;
     }
 
 }

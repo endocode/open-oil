@@ -109,7 +109,7 @@ public class CostRecoveryVisitor implements IContractElementVisitor {
         BigDecimal costRecoveryBaseN;
 
         for (int i = 0; i < production.size(); i++) {
-            grossSalesN = production.get(i).multiply(price.get(i));
+            grossSalesN = production.get(i).movePointLeft(3).multiply(price.get(i));
 
             // Bounds check... was there a previous year?
             cumulativeRecoverableCostPrevious = BigDecimal.ZERO;
