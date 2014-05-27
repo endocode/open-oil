@@ -148,7 +148,7 @@ public class ProfitOilVisitor implements IContractElementVisitor {
                 continue;
             }
 
-            grossSalesThisYear = production.get(i).multiply(price.get(i));
+            grossSalesThisYear = production.get(i).movePointLeft(3).multiply(price.get(i));
             profitOilThisYear = grossSalesThisYear
                     .subtract(totalRoyalty.get(i))
                     .subtract(costRecovery.get(i));

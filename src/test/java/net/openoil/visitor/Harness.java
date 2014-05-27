@@ -14,6 +14,7 @@ import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
+import net.openoil.element.ProfitOilElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
 
@@ -290,6 +291,39 @@ public class Harness {
         return costs;
     }
 
+    // PROFIT OIL
+
+    public static ProfitOilElement getFilledProfitOilElement() {
+        ProfitOilElement element = getProfitOilElement();
+
+        element.setProfitOil(getProfitOil());
+
+        return element;
+    }
+
+    public static ProfitOilElement getProfitOilElement() {
+        ProfitOilElement element = new ProfitOilElement();
+
+        return element;
+    }
+
+    public static List<BigDecimal> getProfitOil() {
+        List<BigDecimal> expected = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        expected.add(new BigDecimal(0));
+        expected.add(new BigDecimal(0));
+        expected.add(new BigDecimal(0));
+        expected.add(new BigDecimal(0));
+        expected.add(new BigDecimal("32.46"));
+        expected.add(new BigDecimal("289.08"));
+        expected.add(new BigDecimal("233.52"));
+        expected.add(new BigDecimal("193.39"));
+
+        assertEquals(YEAR_COUNT, expected.size());
+
+        return expected;
+    }
+
     // SURFACE RENTAL PRIVATE
 
     private static List<BigDecimal> getRentalPerKm() {
@@ -512,5 +546,9 @@ public class Harness {
 
         return list;
     }
+
+    // PROFIT OIL PRIVATE
+
+    // nothing.
 
 }
