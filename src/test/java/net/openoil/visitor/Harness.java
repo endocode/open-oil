@@ -16,6 +16,7 @@ import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
 import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
+import net.openoil.element.StateParticipationElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
 
@@ -378,6 +379,41 @@ public class Harness {
         return share;
     }
 
+    // STATE PARTICIPATION
+
+    public static StateParticipationElement getFilledStateParticipationElement() {
+        StateParticipationElement element = getStateParticipationElement();
+
+        element.setStateParticipation(getStateParticipation());
+
+        return element;
+    }
+
+    public static StateParticipationElement getStateParticipationElement() {
+        StateParticipationElement element = new StateParticipationElement();
+
+        element.setStateParticipationRate(getStateParticipationRate());
+
+        return element;
+    }
+
+    public static List<BigDecimal> getStateParticipation() {
+        List<BigDecimal> state = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        state.add(new BigDecimal(0));
+        state.add(new BigDecimal(0));
+        state.add(new BigDecimal(0));
+        state.add(new BigDecimal(0));
+        state.add(new BigDecimal("6.17"));
+        state.add(new BigDecimal("54.93"));
+        state.add(new BigDecimal("44.37"));
+        state.add(new BigDecimal("36.75"));
+
+        assertEquals(YEAR_COUNT, state.size());
+
+        return state;
+    }
+
     // SURFACE RENTAL PRIVATE
 
     private static List<BigDecimal> getRentalPerKm() {
@@ -642,6 +678,18 @@ public class Harness {
         assertEquals(valueCount, tranche.size());
 
         return tranche;
+    }
+
+    // STATE PARTICIPATION PRIVATE
+
+    private static List<BigDecimal> getStateParticipationRate() {
+        List<BigDecimal> rate = new ArrayList<BigDecimal>(1);
+
+        rate.add(new BigDecimal(19));
+
+        assertEquals(1, rate.size());
+
+        return rate;
     }
 
 }
