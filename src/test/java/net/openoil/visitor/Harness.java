@@ -14,6 +14,7 @@ import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
+import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
 import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
@@ -324,6 +325,59 @@ public class Harness {
         return expected;
     }
 
+    // PRODUCTION SHARING TRANCHE
+
+    public static ProductionSharingTrancheElement getFilledProductionSharingTrancheElement() {
+        ProductionSharingTrancheElement element = getProductionSharingTrancheElement();
+
+        element.setGovernmentShare(getGovernmentShare());
+        element.setCompanyShare(getCompanyShare());
+
+        return element;
+    }
+
+    public static ProductionSharingTrancheElement getProductionSharingTrancheElement() {
+        ProductionSharingTrancheElement element = new ProductionSharingTrancheElement();
+
+        setShareTranches(element, getShareTranches());
+
+        return element;
+    }
+
+    public static List<BigDecimal> getGovernmentShare() {
+        List<BigDecimal> share = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        share.add(new BigDecimal(0));
+        share.add(new BigDecimal(0));
+        share.add(new BigDecimal(0));
+        share.add(new BigDecimal(0));
+        share.add(new BigDecimal("13.96"));
+        share.add(new BigDecimal("176.34"));
+        share.add(new BigDecimal("130.78"));
+        share.add(new BigDecimal("108.30"));
+
+        assertEquals(YEAR_COUNT, share.size());
+
+        return share;
+    }
+
+    public static List<BigDecimal> getCompanyShare() {
+        List<BigDecimal> share = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        share.add(new BigDecimal(0));
+        share.add(new BigDecimal(0));
+        share.add(new BigDecimal(0));
+        share.add(new BigDecimal(0));
+        share.add(new BigDecimal("18.51"));
+        share.add(new BigDecimal("112.75"));
+        share.add(new BigDecimal("102.75"));
+        share.add(new BigDecimal("85.10"));
+
+        assertEquals(YEAR_COUNT, share.size());
+
+        return share;
+    }
+
     // SURFACE RENTAL PRIVATE
 
     private static List<BigDecimal> getRentalPerKm() {
@@ -550,5 +604,44 @@ public class Harness {
     // PROFIT OIL PRIVATE
 
     // nothing.
+
+    // PRODUCTION SHARING TRANCHE PRIVATE
+
+    private static void setShareTranches(ProductionSharingTrancheElement share, List<List<BigDecimal>> tranches) {
+        for (List<BigDecimal> tranche : tranches) {
+            share.addTranche(tranche);
+        }
+    }
+
+    private static List<List<BigDecimal>> getShareTranches() {
+        final int trancheCount = 6;
+        List<List<BigDecimal>> tranches = new ArrayList<List<BigDecimal>>(trancheCount);
+
+        tranches.add(createShareTranche(43, 57, 0, 5));
+        tranches.add(createShareTranche(46, 54, 5, 10));
+        tranches.add(createShareTranche(51, 49, 10, 20));
+        tranches.add(createShareTranche(56, 44, 20, 30));
+        tranches.add(createShareTranche(61, 39, 30, 40));
+        tranches.add(createShareTranche(66, 34, 40, 1000000));
+
+        assertEquals(trancheCount, tranches.size());
+
+        return tranches;
+    }
+
+    private static List<BigDecimal> createShareTranche(double govtShare, double companyShare, double lmbopd, double umbopd)
+    {
+        final int valueCount = 4;
+        List<BigDecimal> tranche = new ArrayList<BigDecimal>(valueCount);
+
+        tranche.add(new BigDecimal(govtShare));
+        tranche.add(new BigDecimal(companyShare));
+        tranche.add(new BigDecimal(lmbopd));
+        tranche.add(new BigDecimal(umbopd));
+
+        assertEquals(valueCount, tranche.size());
+
+        return tranche;
+    }
 
 }
