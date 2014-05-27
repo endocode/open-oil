@@ -101,7 +101,7 @@ public class CumulativeProductionRoyaltyVisitor implements
         for (int y = 0; y < year.size(); y++) {
             // Calculate cumulative production to this year
             cumulativeProductionThisYear = cumulativeProductionThisYear
-                    .add(production.get(y));
+                    .add(production.get(y).movePointLeft(3));
 
             // If cumulative production is still 0, skip to the next year
             if (cumulativeProductionThisYear.compareTo(BigDecimal.ZERO) == 0) {

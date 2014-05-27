@@ -6,6 +6,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+import net.openoil.element.CumulativeProductionRoyaltyElement;
 import net.openoil.element.DailyProductionRoyaltyElement;
 import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
@@ -189,6 +190,41 @@ public class Harness {
         return element;
     }
 
+    // CUMULATIVE PRODUCTION ROYALTY
+
+    public static CumulativeProductionRoyaltyElement getFilledCumulativeProductionRoyaltyElement() {
+        CumulativeProductionRoyaltyElement element = getCumulativeProductionRoyaltyElement();
+
+        element.setCumulativeProductionRoyalty(getCumulativeProductionRoyalty());
+
+        return element;
+    }
+
+    public static CumulativeProductionRoyaltyElement getCumulativeProductionRoyaltyElement() {
+        CumulativeProductionRoyaltyElement element = new CumulativeProductionRoyaltyElement();
+
+        setCumulativeTranches(element, getCumulativeTranches());
+
+        return element;
+    }
+
+    public static List<BigDecimal> getCumulativeProductionRoyalty() {
+        List<BigDecimal> cumulative = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        cumulative.add(new BigDecimal(0));
+        cumulative.add(new BigDecimal(0));
+        cumulative.add(new BigDecimal(0));
+        cumulative.add(new BigDecimal(0));
+        cumulative.add(new BigDecimal("2.93"));
+        cumulative.add(new BigDecimal("39.61"));
+        cumulative.add(new BigDecimal("102.12"));
+        cumulative.add(new BigDecimal("191.51"));
+
+        assertEquals(YEAR_COUNT, cumulative.size());
+
+        return cumulative;
+    }
+
     // SURFACE RENTAL PRIVATE
 
     private static List<BigDecimal> getRentalPerKm() {
@@ -335,6 +371,43 @@ public class Harness {
         assertEquals(YEAR_COUNT, years.size());
 
         return years;
+    }
+
+    // CUMULATIVE PRODUCTION ROYALTY PRIVATE
+
+    private static void setCumulativeTranches(CumulativeProductionRoyaltyElement royalty, List<List<BigDecimal>> tranches) {
+        for (List<BigDecimal> tranche : tranches) {
+            royalty.addTranche(tranche);
+        }
+    }
+
+    private static List<List<BigDecimal>> getCumulativeTranches() {
+        final int trancheCount = 5;
+        List<List<BigDecimal>> tranches = new ArrayList<List<BigDecimal>>(trancheCount);
+
+        tranches.add(createCumulativeTranche(0, 10, 2.5));
+        tranches.add(createCumulativeTranche(10, 20, 5));
+        tranches.add(createCumulativeTranche(20, 30, 7.5));
+        tranches.add(createCumulativeTranche(30, 40, 10));
+        tranches.add(createCumulativeTranche(40, 1000000, 12.5));
+
+        assertEquals(trancheCount, tranches.size());
+
+        return tranches;
+    }
+
+    private static List<BigDecimal> createCumulativeTranche(double lmmbbls, double ummbbls, double rate)
+    {
+        final int valueCount = 3;
+        List<BigDecimal> tranche = new ArrayList<BigDecimal>(valueCount);
+
+        tranche.add(new BigDecimal(lmmbbls));
+        tranche.add(new BigDecimal(ummbbls));
+        tranche.add(new BigDecimal(rate));
+
+        assertEquals(valueCount, tranche.size());
+
+        return tranche;
     }
 
 }
