@@ -7,6 +7,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 import net.openoil.element.CapexElement;
+import net.openoil.element.CorporateIncomeTaxElement;
 import net.openoil.element.CostRecoveryElement;
 import net.openoil.element.CumulativeProductionRoyaltyElement;
 import net.openoil.element.DailyProductionRoyaltyElement;
@@ -14,6 +15,7 @@ import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
+import net.openoil.element.ProductionSharingRFactorElement;
 import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
 import net.openoil.element.StateParticipationElement;
@@ -414,6 +416,96 @@ public class Harness {
         return state;
     }
 
+    // PRODUCTION SHARING R FACTOR
+
+    public static ProductionSharingRFactorElement getFilledProductionSharingRFactorElement() {
+        // TODO: Implement tests for R-Factor first.
+        ProductionSharingRFactorElement factor = getProductionSharingRFactorElement();
+
+        factor.setGovernmentShare(getRFactorGovernmentShare());
+        factor.setCompanyShare(getRFactorCompanyShare());
+
+        return factor;
+    }
+
+    public static ProductionSharingRFactorElement getProductionSharingRFactorElement() {
+        // TODO: Implement tests for R-Factor first.
+        ProductionSharingRFactorElement factor = new ProductionSharingRFactorElement();
+
+        return factor;
+    }
+
+    public static List<BigDecimal> getRFactorGovernmentShare() {
+        // TODO: Implement tests for R-Factor first.
+        return null;
+    }
+
+    public static List<BigDecimal> getRFactorCompanyShare() {
+        // TODO: Implement tests for R-Factor first.
+        return null;
+    }
+
+    // CORPORATE INCOME TAX
+
+    public static CorporateIncomeTaxElement getFilledCorporateIncomeTaxElementViaTranches() {
+        CorporateIncomeTaxElement element = getCorporateIncomeTaxElement();
+
+        element.setTax(getTaxViaTranches());
+
+        return element;
+    }
+
+    public static CorporateIncomeTaxElement getFilledCorporateIncomeTaxElementViaRFactor() {
+        CorporateIncomeTaxElement element = getCorporateIncomeTaxElement();
+
+        element.setTax(getTaxViaRFactor());
+
+        return element;
+    }
+
+    public static CorporateIncomeTaxElement getCorporateIncomeTaxElement() {
+        CorporateIncomeTaxElement element = new CorporateIncomeTaxElement();
+
+        element.setTaxRate(getTaxRate());
+
+        return element;
+    }
+
+    public static List<BigDecimal> getTaxViaTranches() {
+        List<BigDecimal> tax = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal("5.55"));
+        tax.add(new BigDecimal("33.83"));
+        tax.add(new BigDecimal("30.83"));
+        tax.add(new BigDecimal("25.53"));
+
+        assertEquals(YEAR_COUNT, tax.size());
+
+        return tax;
+    }
+
+    public static List<BigDecimal> getTaxViaRFactor() {
+        List<BigDecimal> tax = new ArrayList<BigDecimal>(YEAR_COUNT);
+
+        // TODO: Put proper expected values.
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal(0));
+
+        assertEquals(YEAR_COUNT, tax.size());
+
+        return tax;
+    }
+
     // SURFACE RENTAL PRIVATE
 
     private static List<BigDecimal> getRentalPerKm() {
@@ -686,6 +778,22 @@ public class Harness {
         List<BigDecimal> rate = new ArrayList<BigDecimal>(1);
 
         rate.add(new BigDecimal(19));
+
+        assertEquals(1, rate.size());
+
+        return rate;
+    }
+
+    // PRODUCTION SHARING R FACTOR PRIVATE
+
+    // nothing.
+
+    // CORPORATE INCOME TAX PRIVATE
+
+    private static List<BigDecimal> getTaxRate() {
+        List<BigDecimal> rate = new ArrayList<BigDecimal>(1);
+
+        rate.add(new BigDecimal(30));
 
         assertEquals(1, rate.size());
 
