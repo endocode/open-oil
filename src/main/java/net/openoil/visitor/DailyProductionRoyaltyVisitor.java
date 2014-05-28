@@ -98,7 +98,7 @@ public class DailyProductionRoyaltyVisitor implements IContractElementVisitor {
 
         for (int y = 0; y < year.size(); y++) {
             // Check if production is zero and skip this year if so.
-            if (production.get(y).equals(BigDecimal.ZERO)) {
+            if (production.get(y).compareTo(BigDecimal.ZERO) == 0) {
                 royalty.add(BigDecimal.ZERO);
                 continue;
             }
