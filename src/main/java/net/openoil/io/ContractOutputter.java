@@ -1,6 +1,5 @@
 package net.openoil.io;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -20,7 +19,6 @@ public class ContractOutputter {
 
     private StringBuilder outputStr;
 
-    private BufferedWriter fileWriter;
     private Object[][] odsData;
     private String[] columnNames;
 

@@ -10,8 +10,6 @@ import net.openoil.visitor.IContractElementVisitor;
 
 public class ProductionSharingTrancheElement implements IContractElement {
 
-    private List<BigDecimal> year;
-
     /**
      * Each map is a 4-tuple representing a tranche of the production sharing.
      * 

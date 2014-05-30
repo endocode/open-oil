@@ -7,22 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.openoil.element.CapexElement;
-import net.openoil.element.CorporateIncomeTaxElement;
 import net.openoil.element.CostRecoveryElement;
-import net.openoil.element.CumulativeProductionRoyaltyElement;
-import net.openoil.element.DailyProductionRoyaltyElement;
-import net.openoil.element.FlatRoyaltyElement;
 import net.openoil.element.OpexElement;
-import net.openoil.element.PriceElement;
-import net.openoil.element.ProductionElement;
 import net.openoil.element.ProductionSharingRFactorElement;
-import net.openoil.element.ProductionSharingTrancheElement;
 import net.openoil.element.ProfitOilElement;
-import net.openoil.element.StateParticipationElement;
-import net.openoil.element.SurfaceRentalElement;
 import net.openoil.element.YearElement;
 
-public class ProductionSharingRFactorVisitor implements IContractElementVisitor {
+public class ProductionSharingRFactorVisitor extends DefaultVisitor {
 
     private List<Integer> year = new ArrayList<Integer>();
 
@@ -37,30 +28,6 @@ public class ProductionSharingRFactorVisitor implements IContractElementVisitor 
     @Override
     public void visit(YearElement year) {
         this.year = year.getYear();
-    }
-
-    @Override
-    public void visit(PriceElement price) {
-        // Do nothing.
-        return;
-    }
-
-    @Override
-    public void visit(ProductionElement production) {
-        // Do nothing.
-        return;
-    }
-
-    @Override
-    public void visit(SurfaceRentalElement surfaceRentalElement) {
-        // Do nothing.
-        return;
-    }
-
-    @Override
-    public void visit(FlatRoyaltyElement flatRoyaltyElement) {
-        // Do nothing.
-        return;
     }
 
     @Override
@@ -79,29 +46,8 @@ public class ProductionSharingRFactorVisitor implements IContractElementVisitor 
     }
 
     @Override
-    public void visit(
-            DailyProductionRoyaltyElement dailyProductionRoyaltyElement) {
-        // Do nothing.
-        return;
-    }
-
-    @Override
-    public void visit(
-            CumulativeProductionRoyaltyElement cumulativeProductionRoyaltyElement) {
-        // Do nothing.
-        return;
-    }
-
-    @Override
     public void visit(ProfitOilElement profitOilElement) {
         this.profitOil = profitOilElement.getProfitOil();
-    }
-
-    @Override
-    public void visit(
-            ProductionSharingTrancheElement productionSharingTrancheElement) {
-        // Do nothing.
-        return;
     }
 
     @Override
@@ -189,15 +135,4 @@ public class ProductionSharingRFactorVisitor implements IContractElementVisitor 
         productionSharingRFactorElement.setCompanyShare(companyShare);
     }
 
-    @Override
-    public void visit(CorporateIncomeTaxElement corporateIncomeTax) {
-        // Do nothing.
-        return;
-    }
-
-    @Override
-    public void visit(StateParticipationElement stateParticipationElement) {
-        // Do nothing.
-        return;
-    }
 }
