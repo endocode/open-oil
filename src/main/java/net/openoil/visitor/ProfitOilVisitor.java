@@ -45,12 +45,12 @@ public class ProfitOilVisitor extends DefaultVisitor {
     public void visit(FlatRoyaltyElement flatRoyaltyElement) {
         List<BigDecimal> flatRoyalty = flatRoyaltyElement.getRoyalty();
 
-        if (null == flatRoyalty || flatRoyalty.isEmpty()) {
-            return;
-        }
-
         if (totalRoyalty.isEmpty()) {
             initialiseRoyalty();
+        }
+
+        if (null == flatRoyalty || flatRoyalty.isEmpty()) {
+            return;
         }
 
         for (int i = 0; i < flatRoyalty.size(); i++) {
@@ -72,12 +72,12 @@ public class ProfitOilVisitor extends DefaultVisitor {
         List<BigDecimal> dprRoyalty = dailyProductionRoyaltyElement
                 .getDailyProductionRoyalty();
 
-        if (null == dprRoyalty || dprRoyalty.isEmpty()) {
-            return;
-        }
-
         if (totalRoyalty.isEmpty()) {
             initialiseRoyalty();
+        }
+
+        if (null == dprRoyalty || dprRoyalty.isEmpty()) {
+            return;
         }
 
         for (int i = 0; i < dprRoyalty.size(); i++) {
@@ -94,12 +94,12 @@ public class ProfitOilVisitor extends DefaultVisitor {
         List<BigDecimal> cprRoyalty = cumulativeProductionRoyaltyElement
                 .getCumulativeProductionRoyalty();
 
-        if (null == cprRoyalty || cprRoyalty.isEmpty()) {
-            return;
-        }
-
         if (totalRoyalty.isEmpty()) {
             initialiseRoyalty();
+        }
+
+        if (null == cprRoyalty || cprRoyalty.isEmpty()) {
+            return;
         }
 
         for (int i = 0; i < cprRoyalty.size(); i++) {

@@ -1,4 +1,4 @@
-package net.openoil;
+package net.openoil.test;
 
 import java.math.BigDecimal;
 import java.util.List;

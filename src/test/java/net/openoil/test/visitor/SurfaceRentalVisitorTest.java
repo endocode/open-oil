@@ -1,12 +1,12 @@
-package net.openoil.visitor;
+package net.openoil.test.visitor;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import net.openoil.element.SurfaceRentalElement;
-
-import net.openoil.TestUtil;
+import net.openoil.test.TestUtil;
+import net.openoil.visitor.SurfaceRentalVisitor;
 
 @RunWith(JUnit4.class)
 public class SurfaceRentalVisitorTest {

@@ -50,22 +50,55 @@ public class InputTable {
         if (null == year || year.isEmpty()) {
             throw new ParameterException("Year is missing from input");
         }
+        if (year.contains(null)) {
+            throw new ParameterException("Year row in input is incomplete.");
+        }
+
         if (null == price || price.isEmpty()) {
             throw new ParameterException("Price is missing from input");
         }
+        if (price.contains(null)) {
+            throw new ParameterException("Price row in input is incomplete.");
+        }
+
         if (null == production || production.isEmpty()) {
             throw new ParameterException("Production is missing from input");
         }
+        if (production.contains(null)) {
+            throw new ParameterException(
+                    "Production row in input is incomplete.");
+        }
+
         if (null == capex || capex.isEmpty()) {
             throw new ParameterException("Capex is missing from input");
         }
+        if (capex.contains(null)) {
+            throw new ParameterException("Capex row in input is incomplete.");
+        }
+
         if (null == opexPerBarrel || opexPerBarrel.isEmpty()) {
             throw new ParameterException("Opex is missing from input");
         }
+        if (opexPerBarrel.contains(null)) {
+            throw new ParameterException(
+                    "Opex per barrel row in input is incomplete.");
+        }
+
         if (null == costRecoveryCeiling || costRecoveryCeiling.isEmpty()) {
             throw new ParameterException(
                     "Cost recovery ceiling is missing from input");
         }
+        if (costRecoveryCeiling.contains(null)) {
+            throw new ParameterException(
+                    "Cost recovery ceiling row in input is incomplete.");
+        }
+        if (year.size() != price.size() || year.size() != production.size()
+                || year.size() != capex.size()
+                || year.size() != costRecoveryCeiling.size()) {
+            throw new ParameterException(
+                    "Check your inputs. Year-on-year values should have the same number of columns.");
+        }
+
     }
 
     public List<Integer> getYear() {

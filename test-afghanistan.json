@@ -7,7 +7,6 @@
     capex: [50000, 100000, 150000, 150000, 200000, 200000, 100000],
     opexPerBarrel: [12],
     flatRoyaltyRate: [0.15],
-    opexPerBarrel: [12],
     costRecoveryCeiling: [100, 100, 100, 100, 100, 100, 100],
     rFactor: [ true ],
     corporateIncomeTaxRate: [30]
