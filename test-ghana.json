@@ -4,9 +4,9 @@
     production: [0, 0, 0, 0, 1172, 11750, 10693],
     acreage: [831, 831, 400, 400, 400, 400, 400],
     rentalPerKm: [30, 30, 30, 30, 30, 30, 30],
-    capex: [50000, 100000, 150000, 150000, 200000, 200000, 100000],
+    capex: [50, 100, 150, 150, 200, 200, 100],
     opexPerBarrel: [12],
-    flatRoyaltyRate: [0.15],
+    flatRoyaltyRate: [15],
     opexPerBarrel: [12],
     costRecoveryCeiling: [100, 100, 100, 100, 100, 100, 100],
     stateParticipationRate: [10]
