@@ -1,7 +1,6 @@
 package net.openoil.visitor;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +75,7 @@ public class CorporateIncomeTaxVisitor extends DefaultVisitor {
                     .subtract(governmentProfitOil.get(y));
             taxThisYear = preTaxProfit.multiply(corporateIncomeTaxRate);
 
-            corporateIncomeTax.add(taxThisYear.setScale(2, RoundingMode.UP));
+            corporateIncomeTax.add(taxThisYear);
         }
 
         corporateIncomeTaxElement.setTax(corporateIncomeTax);

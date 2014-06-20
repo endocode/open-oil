@@ -1,7 +1,6 @@
 package net.openoil.visitor;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,24 +84,27 @@ public class CostRecoveryVisitor extends DefaultVisitor {
 
         BigDecimal grossSalesN;
         BigDecimal cumulativeRecoverableCostPrevious;
+        BigDecimal costsRecoveredPrevious;
         BigDecimal cumulativeRecoverableCostN;
         BigDecimal costRecoveryN;
         BigDecimal costRecoveryBaseN;
 
         for (int i = 0; i < production.size(); i++) {
-            grossSalesN = production.get(i).movePointLeft(3)
-                    .multiply(price.get(i));
+            grossSalesN = production.get(i).multiply(price.get(i));
 
             // Bounds check... was there a previous year?
             cumulativeRecoverableCostPrevious = BigDecimal.ZERO;
+            costsRecoveredPrevious = BigDecimal.ZERO;
             if (i > 0) {
                 cumulativeRecoverableCostPrevious = cumulativeRecoverableCosts
                         .get(i - 1);
+                costsRecoveredPrevious = costsRecovered.get(i - 1);
             }
 
             // Cumulative recoverable cost for this year = sum of expenditures.
             cumulativeRecoverableCostN = cumulativeRecoverableCostPrevious
-                    .add(capex.get(i).add(opex.get(i)));
+                    .subtract(costsRecoveredPrevious).add(
+                            capex.get(i).add(opex.get(i)));
 
             // Now work out the cost recovery base
 
@@ -133,10 +135,9 @@ public class CostRecoveryVisitor extends DefaultVisitor {
             // TODO This is just a check! Is it correct?
             costRecoveryN = costRecoveryN.min(cumulativeRecoverableCostN);
 
-            costsRecovered.add(costRecoveryN.setScale(2, RoundingMode.UP));
+            costsRecovered.add(costRecoveryN);
 
-            cumulativeRecoverableCosts.add(cumulativeRecoverableCostN.subtract(
-                    costRecoveryN).setScale(2, RoundingMode.UP));
+            cumulativeRecoverableCosts.add(cumulativeRecoverableCostN);
 
         }
 
@@ -144,5 +145,4 @@ public class CostRecoveryVisitor extends DefaultVisitor {
         costRecoveryElement
                 .setCumulativeRecoverableCosts(cumulativeRecoverableCosts);
     }
-
 }

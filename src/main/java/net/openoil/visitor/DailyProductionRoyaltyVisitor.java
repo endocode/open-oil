@@ -68,10 +68,11 @@ public class DailyProductionRoyaltyVisitor extends DefaultVisitor {
             adp = productionThisYear.divide(daysPerYear, new MathContext(4,
                     RoundingMode.DOWN));
 
-            // Find which tranche the ADP falls into. The volume for each
-            // tranche
-            // needs to be split between the top tranche, N, and all lower
-            // tranches down to 1.
+            /*
+             * Find which tranche the ADP falls into. The volume for each
+             * tranche needs to be split between the top tranche, N, and all
+             * lower tranches down to 1.
+             */
             int trancheN;
             Map<String, BigDecimal> tranche;
             BigDecimal lowerBound;
@@ -92,10 +93,14 @@ public class DailyProductionRoyaltyVisitor extends DefaultVisitor {
                 }
             }
 
-            // For each tranche:
-            // volumeTrancheN = min(adp, trancheNCeiling) - tranchNFloor
-            // royaltyTrancheN = volumeTranchN * rateTranchN * priceThisYear *
-            // daysPerYear
+            /*
+             * For each tranche:
+             * 
+             * volumeTrancheN = min(adp, trancheNCeiling) - tranchNFloor
+             * 
+             * royaltyTrancheN = volumeTranchN * rateTranchN * priceThisYear *
+             * daysPerYear
+             */
 
             // Each royalty in this list is a royalty per tranche, but only for
             // this year.
@@ -122,10 +127,6 @@ public class DailyProductionRoyaltyVisitor extends DefaultVisitor {
                 volumeTrancheN = adp.min(ceilingTrancheN).subtract(
                         floorTrancheN);
 
-                // Convert volume from mbbls to actual number (because we are
-                // going to calculate using price per barrel)
-                volumeTrancheN = volumeTrancheN.movePointRight(3);
-
                 royaltyTrancheN = volumeTrancheN.multiply(rateTrancheN)
                         .multiply(price.get(y)).multiply(daysPerYear);
 
@@ -139,9 +140,7 @@ public class DailyProductionRoyaltyVisitor extends DefaultVisitor {
                 totalRoyaltyThisYear = totalRoyaltyThisYear.add(r);
             }
 
-            // Royalty is currently in $, but needs storing in $mm.
-            totalRoyaltyThisYear = totalRoyaltyThisYear.movePointLeft(6);
-            royalty.add(totalRoyaltyThisYear.setScale(2, RoundingMode.UP));
+            royalty.add(totalRoyaltyThisYear);
         }
 
         dailyProductionRoyaltyElement.setDailyProductionRoyalty(royalty);

@@ -116,9 +116,8 @@ public class ProductionSharingRFactorVisitor extends DefaultVisitor {
                 BigDecimal companyProfit = profitOilThisYear
                         .multiply(companySharePercentage);
 
-                governmentShare.add(governmentProfit.setScale(2,
-                        RoundingMode.UP));
-                companyShare.add(companyProfit.setScale(2, RoundingMode.UP));
+                governmentShare.add(governmentProfit);
+                companyShare.add(companyProfit);
             }
 
             // Determine next year's R-Factor

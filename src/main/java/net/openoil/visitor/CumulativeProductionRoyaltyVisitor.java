@@ -1,7 +1,6 @@
 package net.openoil.visitor;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +51,7 @@ public class CumulativeProductionRoyaltyVisitor extends DefaultVisitor {
         for (int y = 0; y < year.size(); y++) {
             // Calculate cumulative production to this year
             cumulativeProductionThisYear = cumulativeProductionThisYear
-                    .add(production.get(y).movePointLeft(3));
+                    .add(production.get(y));
 
             // If cumulative production is still 0, skip to the next year
             if (cumulativeProductionThisYear.compareTo(BigDecimal.ZERO) == 0) {
@@ -83,9 +82,13 @@ public class CumulativeProductionRoyaltyVisitor extends DefaultVisitor {
                 }
             }
 
-            // For each tranche:
-            // volumeTrancheN = min(cumProd, trancheNCeiling) - tranchNFloor
-            // royaltyTrancheN = volumeTranchN * rateTranchN * priceThisYear
+            /*
+             * For each tranche:
+             *
+             * volumeTrancheN = min(cumProd, trancheNCeiling) - tranchNFloor
+             *
+             * royaltyTrancheN = volumeTranchN * rateTranchN * priceThisYear
+             */
 
             // Each royalty in this list is a royalty per tranche, but only for
             // this year.
@@ -124,7 +127,7 @@ public class CumulativeProductionRoyaltyVisitor extends DefaultVisitor {
             for (BigDecimal r : royaltyThisYear) {
                 totalRoyaltyThisYear = totalRoyaltyThisYear.add(r);
             }
-            royalty.add(totalRoyaltyThisYear.setScale(2, RoundingMode.UP));
+            royalty.add(totalRoyaltyThisYear);
         }
 
         cumulativeProductionRoyaltyElement

@@ -1,7 +1,6 @@
 package net.openoil.visitor;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,8 +44,7 @@ public class StateParticipationVisitor extends DefaultVisitor {
             participationRateN = stateParticipationRate.get(0).movePointLeft(2);
             stateParticipationN = profitOil.get(y).multiply(participationRateN);
 
-            stateParticipation.add(stateParticipationN.setScale(2,
-                    RoundingMode.UP));
+            stateParticipation.add(stateParticipationN);
         }
 
         stateParticipationElement.setStateParticipation(stateParticipation);

@@ -100,17 +100,20 @@ public class ProductionSharingTrancheVisitor extends DefaultVisitor {
                 }
             }
 
-            // For the tranche, N:
-            // governmentShare = profitOil * governmentRateTrancheN
-            // companyShare = profitOil * companyRateTrancheN
+            /*
+             * For the tranche, N:
+             * 
+             * governmentShare = profitOil * governmentRateTrancheN
+             * 
+             * companyShare = profitOil * companyRateTrancheN
+             */
             BigDecimal governmentShareThisYear = profitOil.get(y).multiply(
                     governmentRateTrancheN);
             BigDecimal companyShareThisYear = profitOil.get(y).multiply(
                     companyRateTrancheN);
 
-            governmentShare.add(governmentShareThisYear.setScale(2,
-                    RoundingMode.UP));
-            companyShare.add(companyShareThisYear.setScale(2, RoundingMode.UP));
+            governmentShare.add(governmentShareThisYear);
+            companyShare.add(companyShareThisYear);
         }
 
         productionSharingTrancheElement.setGovernmentShare(governmentShare);
