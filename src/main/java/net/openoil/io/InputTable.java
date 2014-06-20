@@ -41,6 +41,8 @@ public class InputTable {
 
     private List<BigDecimal> stateParticipationRate = new ArrayList<BigDecimal>();
 
+    private List<BigDecimal> inflationRate = new ArrayList<BigDecimal>();
+
     /**
      * Verifies that all required inputs have been entered correctly.
      */
@@ -164,5 +166,13 @@ public class InputTable {
 
     public List<BigDecimal> getStateParticipationRate() {
         return this.stateParticipationRate;
+    }
+
+    public List<BigDecimal> getInflationRate() {
+        return this.inflationRate;
+    }
+
+    public void setInflationRate(List<BigDecimal> inflationRate) {
+        this.inflationRate = inflationRate;
     }
 }

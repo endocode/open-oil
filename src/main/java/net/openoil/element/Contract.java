@@ -16,6 +16,7 @@ public class Contract implements IContractElement {
 
     public Contract() {
         contractElements.add(new YearElement());
+        contractElements.add(new InflationElement());
         contractElements.add(new PriceElement());
         contractElements.add(new ProductionElement());
         contractElements.add(new SurfaceRentalElement());

@@ -6,6 +6,7 @@ import net.openoil.element.CostRecoveryElement;
 import net.openoil.element.CumulativeProductionRoyaltyElement;
 import net.openoil.element.DailyProductionRoyaltyElement;
 import net.openoil.element.FlatRoyaltyElement;
+import net.openoil.element.InflationElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
@@ -55,5 +56,7 @@ public interface IContractElementVisitor {
     public void visit(CorporateIncomeTaxElement corporateIncomeTax);
 
     public void visit(StateParticipationElement stateParticipationElement);
+
+    public void visit(InflationElement inflationElement);
 
 }

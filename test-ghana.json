@@ -9,5 +9,6 @@
     flatRoyaltyRate: [5],
     opexPerBarrel: [12],
     costRecoveryCeiling: [100, 100, 100, 100, 100, 100, 100],
-    stateParticipationRate: [10]
+    stateParticipationRate: [10],
+    inflationRate: [2.5]
 }

@@ -51,6 +51,7 @@ public class ContractOutputter {
         addToOutput("Year", outputs.getYear());
         addToOutput("Production", outputs.getProduction());
         addToOutput("Price", outputs.getPrice());
+        addToOutput("Gross Sales", outputs.getGrossSales());
         addToOutput("Surface Rental", outputs.getSurfaceRental(),
                 SURFACE_RENTAL_DESC);
         addToOutput("Flat Royalty", outputs.getFlatRoyalty(), FLAT_ROYALTY_DESC);

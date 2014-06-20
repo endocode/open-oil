@@ -41,7 +41,7 @@ public class OutputTable {
 
     private List<BigDecimal> corporateIncomeTax = new ArrayList<BigDecimal>();
 
-    private List<BigDecimal> stateParticipation = new ArrayList<BigDecimal>();;
+    private List<BigDecimal> stateParticipation = new ArrayList<BigDecimal>();
 
     public List<Integer> getYear() {
         return year;
@@ -65,6 +65,16 @@ public class OutputTable {
 
     public void setPrice(List<BigDecimal> price) {
         this.price = price;
+    }
+
+    public List<BigDecimal> getGrossSales() {
+        List<BigDecimal> grossSales = new ArrayList<BigDecimal>();
+
+        for (Integer y : year) {
+            grossSales.add(price.get(y - 1).multiply(production.get(y - 1)));
+        }
+
+        return grossSales;
     }
 
     public List<BigDecimal> getSurfaceRental() {

@@ -9,6 +9,7 @@ import net.openoil.element.CostRecoveryElement;
 import net.openoil.element.CumulativeProductionRoyaltyElement;
 import net.openoil.element.DailyProductionRoyaltyElement;
 import net.openoil.element.FlatRoyaltyElement;
+import net.openoil.element.InflationElement;
 import net.openoil.element.OpexElement;
 import net.openoil.element.PriceElement;
 import net.openoil.element.ProductionElement;
@@ -24,7 +25,7 @@ import net.openoil.io.InputTable;
  * This is the first step of the algorithm. It takes all values entered by the
  * user and initialises the elements of the contract with starting values.
  */
-public class InitialisingVisitor implements IContractElementVisitor {
+public class InitialisingVisitor extends DefaultVisitor {
 
     private InputTable inputs;
 
@@ -127,5 +128,10 @@ public class InitialisingVisitor implements IContractElementVisitor {
     public void visit(StateParticipationElement stateParticipationElement) {
         stateParticipationElement.setStateParticipationRate(inputs
                 .getStateParticipationRate());
+    }
+
+    @Override
+    public void visit(InflationElement inflationElement) {
+        inflationElement.setInflationRate(inputs.getInflationRate());
     }
 }

@@ -21,7 +21,7 @@ import net.openoil.io.OutputTable;
  * The last step of the algorithm. This gathers all the values of the contract
  * after all steps have been run and puts them into an OutputTable.
  */
-public class OutputVisitor implements IContractElementVisitor {
+public class OutputVisitor extends DefaultVisitor {
 
     private OutputTable outputs;
 
@@ -124,4 +124,5 @@ public class OutputVisitor implements IContractElementVisitor {
         this.outputs.setStateParticipation(stateParticipationElement
                 .getStateParticipation());
     }
+
 }
