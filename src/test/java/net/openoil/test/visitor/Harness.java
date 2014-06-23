@@ -1,10 +1,10 @@
 package net.openoil.test.visitor;
 
+import static org.junit.Assert.assertEquals;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 import net.openoil.element.CapexElement;
 import net.openoil.element.CorporateIncomeTaxElement;
@@ -87,10 +87,10 @@ public class Harness {
         expected.add(new BigDecimal(0));
         expected.add(new BigDecimal(0));
         expected.add(new BigDecimal(0));
-        expected.add(new BigDecimal("17.58"));
-        expected.add(new BigDecimal("176.25"));
-        expected.add(new BigDecimal("160.40"));
-        expected.add(new BigDecimal("158.04"));
+        expected.add(new BigDecimal("17580000"));
+        expected.add(new BigDecimal("176250000"));
+        expected.add(new BigDecimal("160395000"));
+        expected.add(new BigDecimal("145950000"));
 
         assertEquals(YEAR_COUNT, expected.size());
 
@@ -142,10 +142,10 @@ public class Harness {
         opex.add(new BigDecimal(0));
         opex.add(new BigDecimal(0));
         opex.add(new BigDecimal(0));
-        opex.add(new BigDecimal("14.07"));
-        opex.add(new BigDecimal("141.00"));
-        opex.add(new BigDecimal("128.32"));
-        opex.add(new BigDecimal("126.44"));
+        opex.add(new BigDecimal("14064000"));
+        opex.add(new BigDecimal("141000000"));
+        opex.add(new BigDecimal("128316000"));
+        opex.add(new BigDecimal("116760000"));
 
         assertEquals(YEAR_COUNT, opex.size());
 
@@ -177,10 +177,10 @@ public class Harness {
         daily.add(new BigDecimal(0));
         daily.add(new BigDecimal(0));
         daily.add(new BigDecimal(0));
-        daily.add(new BigDecimal("6.51"));
-        daily.add(new BigDecimal("133.18"));
-        daily.add(new BigDecimal("119.95"));
-        daily.add(new BigDecimal("117.99"));
+        daily.add(new BigDecimal("6506125"));
+        daily.add(new BigDecimal("133179375"));
+        daily.add(new BigDecimal("119948125"));
+        daily.add(new BigDecimal("107903125"));
 
         assertEquals(YEAR_COUNT, daily.size());
 
@@ -222,10 +222,10 @@ public class Harness {
         cumulative.add(new BigDecimal(0));
         cumulative.add(new BigDecimal(0));
         cumulative.add(new BigDecimal(0));
-        cumulative.add(new BigDecimal("2.93"));
-        cumulative.add(new BigDecimal("39.61"));
-        cumulative.add(new BigDecimal("102.12"));
-        cumulative.add(new BigDecimal("191.51"));
+        cumulative.add(new BigDecimal("2930000"));
+        cumulative.add(new BigDecimal("32305000"));
+        cumulative.add(new BigDecimal("59037500"));
+        cumulative.add(new BigDecimal("83362500"));
 
         assertEquals(YEAR_COUNT, cumulative.size());
 
@@ -268,10 +268,10 @@ public class Harness {
         recovery.add(new BigDecimal(0));
         recovery.add(new BigDecimal(0));
         recovery.add(new BigDecimal(0));
-        recovery.add(new BigDecimal("57.72"));
-        recovery.add(new BigDecimal("536.88"));
-        recovery.add(new BigDecimal("453.31"));
-        recovery.add(new BigDecimal("392.67"));
+        recovery.add(new BigDecimal("99620000"));
+        recovery.add(new BigDecimal("905444000"));
+        recovery.add(new BigDecimal("228316000"));
+        recovery.add(new BigDecimal("166760000"));
 
         assertEquals(YEAR_COUNT, recovery.size());
 
@@ -281,14 +281,14 @@ public class Harness {
     public static List<BigDecimal> getCumulativeRecoverableCosts() {
         List<BigDecimal> costs = new ArrayList<BigDecimal>(YEAR_COUNT);
 
-        costs.add(new BigDecimal(50));
-        costs.add(new BigDecimal(150));
-        costs.add(new BigDecimal(300));
-        costs.add(new BigDecimal(450));
-        costs.add(new BigDecimal("606.36"));
-        costs.add(new BigDecimal("410.49"));
-        costs.add(new BigDecimal("185.51"));
-        costs.add(new BigDecimal("69.29"));
+        costs.add(new BigDecimal("50000000"));
+        costs.add(new BigDecimal("150000000"));
+        costs.add(new BigDecimal("300000000"));
+        costs.add(new BigDecimal("450000000"));
+        costs.add(new BigDecimal("664064000"));
+        costs.add(new BigDecimal("905444000"));
+        costs.add(new BigDecimal("228316000"));
+        costs.add(new BigDecimal("166760000"));
 
         assertEquals(YEAR_COUNT, costs.size());
 
@@ -318,10 +318,10 @@ public class Harness {
         expected.add(new BigDecimal(0));
         expected.add(new BigDecimal(0));
         expected.add(new BigDecimal(0));
-        expected.add(new BigDecimal("32.46"));
-        expected.add(new BigDecimal("289.08"));
-        expected.add(new BigDecimal("233.52"));
-        expected.add(new BigDecimal("193.39"));
+        expected.add(new BigDecimal(0));
+        expected.add(new BigDecimal("93306000"));
+        expected.add(new BigDecimal("680589000"));
+        expected.add(new BigDecimal("660290000"));
 
         assertEquals(YEAR_COUNT, expected.size());
 
@@ -354,10 +354,10 @@ public class Harness {
         share.add(new BigDecimal(0));
         share.add(new BigDecimal(0));
         share.add(new BigDecimal(0));
-        share.add(new BigDecimal("13.96"));
-        share.add(new BigDecimal("176.34"));
-        share.add(new BigDecimal("130.78"));
-        share.add(new BigDecimal("108.30"));
+        share.add(new BigDecimal(0));
+        share.add(new BigDecimal("56916660"));
+        share.add(new BigDecimal("381129840"));
+        share.add(new BigDecimal("369762400"));
 
         assertEquals(YEAR_COUNT, share.size());
 
@@ -367,14 +367,15 @@ public class Harness {
     public static List<BigDecimal> getCompanyShare() {
         List<BigDecimal> share = new ArrayList<BigDecimal>(YEAR_COUNT);
 
+        // TODO
         share.add(new BigDecimal(0));
         share.add(new BigDecimal(0));
         share.add(new BigDecimal(0));
         share.add(new BigDecimal(0));
-        share.add(new BigDecimal("18.51"));
-        share.add(new BigDecimal("112.75"));
-        share.add(new BigDecimal("102.75"));
-        share.add(new BigDecimal("85.10"));
+        share.add(new BigDecimal(0));
+        share.add(new BigDecimal(36389340));
+        share.add(new BigDecimal(299459160));
+        share.add(new BigDecimal(290527600));
 
         assertEquals(YEAR_COUNT, share.size());
 
@@ -406,10 +407,10 @@ public class Harness {
         state.add(new BigDecimal(0));
         state.add(new BigDecimal(0));
         state.add(new BigDecimal(0));
-        state.add(new BigDecimal("6.17"));
-        state.add(new BigDecimal("54.93"));
-        state.add(new BigDecimal("44.37"));
-        state.add(new BigDecimal("36.75"));
+        state.add(new BigDecimal(0));
+        state.add(new BigDecimal("9330600"));
+        state.add(new BigDecimal("68058900"));
+        state.add(new BigDecimal("66029000"));
 
         assertEquals(YEAR_COUNT, state.size());
 
@@ -478,10 +479,10 @@ public class Harness {
         tax.add(new BigDecimal(0));
         tax.add(new BigDecimal(0));
         tax.add(new BigDecimal(0));
-        tax.add(new BigDecimal("5.55"));
-        tax.add(new BigDecimal("33.83"));
-        tax.add(new BigDecimal("30.83"));
-        tax.add(new BigDecimal("25.53"));
+        tax.add(new BigDecimal(0));
+        tax.add(new BigDecimal("10916802"));
+        tax.add(new BigDecimal("89837748"));
+        tax.add(new BigDecimal("87158280"));
 
         assertEquals(YEAR_COUNT, tax.size());
 
@@ -582,10 +583,10 @@ public class Harness {
         production.add(new BigDecimal(0));
         production.add(new BigDecimal(0));
         production.add(new BigDecimal(0));
-        production.add(new BigDecimal(1172));
-        production.add(new BigDecimal(11750));
-        production.add(new BigDecimal(10693));
-        production.add(new BigDecimal(10536));
+        production.add(new BigDecimal("1172000"));
+        production.add(new BigDecimal("11750000"));
+        production.add(new BigDecimal("10693000"));
+        production.add(new BigDecimal("9730000"));
 
         assertEquals(YEAR_COUNT, production.size());
 
@@ -606,7 +607,8 @@ public class Harness {
 
     // DAILY PRODUCTION ROYALTY PRIVATE
 
-    private static void setDailyTranches(DailyProductionRoyaltyElement royalty, List<List<BigDecimal>> tranches) {
+    private static void setDailyTranches(DailyProductionRoyaltyElement royalty,
+            List<List<BigDecimal>> tranches) {
         for (List<BigDecimal> tranche : tranches) {
             royalty.addTranche(tranche);
         }
@@ -614,20 +616,21 @@ public class Harness {
 
     private static List<List<BigDecimal>> getDailyTranches() {
         final int trancheCount = 4;
-        List<List<BigDecimal>> tranches = new ArrayList<List<BigDecimal>>(trancheCount);
+        List<List<BigDecimal>> tranches = new ArrayList<List<BigDecimal>>(
+                trancheCount);
 
-        tranches.add(createDailyTranche(0, 2.5, 5));
-        tranches.add(createDailyTranche(2.5, 5, 7.5));
-        tranches.add(createDailyTranche(5, 7.5, 10));
-        tranches.add(createDailyTranche(7.5, 1000000, 12.5));
+        tranches.add(createDailyTranche(0, 2500, 5));
+        tranches.add(createDailyTranche(2500, 5000, 7.5));
+        tranches.add(createDailyTranche(5000, 7500, 10));
+        tranches.add(createDailyTranche(7500, 1000000000, 12.5));
 
         assertEquals(trancheCount, tranches.size());
 
         return tranches;
     }
 
-    private static List<BigDecimal> createDailyTranche(double lmbopd, double umbopd, double rate)
-    {
+    private static List<BigDecimal> createDailyTranche(double lmbopd,
+            double umbopd, double rate) {
         final int valueCount = 3;
         List<BigDecimal> tranche = new ArrayList<BigDecimal>(valueCount);
 
@@ -656,29 +659,33 @@ public class Harness {
 
     // CUMULATIVE PRODUCTION ROYALTY PRIVATE
 
-    private static void setCumulativeTranches(CumulativeProductionRoyaltyElement royalty, List<List<BigDecimal>> tranches) {
+    private static void setCumulativeTranches(
+            CumulativeProductionRoyaltyElement royalty,
+            List<List<BigDecimal>> tranches) {
         for (List<BigDecimal> tranche : tranches) {
             royalty.addTranche(tranche);
         }
     }
 
     private static List<List<BigDecimal>> getCumulativeTranches() {
-        final int trancheCount = 5;
-        List<List<BigDecimal>> tranches = new ArrayList<List<BigDecimal>>(trancheCount);
+        final int trancheCount = 6;
+        List<List<BigDecimal>> tranches = new ArrayList<List<BigDecimal>>(
+                trancheCount);
 
-        tranches.add(createCumulativeTranche(0, 10, 2.5));
-        tranches.add(createCumulativeTranche(10, 20, 5));
-        tranches.add(createCumulativeTranche(20, 30, 7.5));
-        tranches.add(createCumulativeTranche(30, 40, 10));
-        tranches.add(createCumulativeTranche(40, 1000000, 12.5));
+        tranches.add(createCumulativeTranche(0, 50000000, 2.5));
+        tranches.add(createCumulativeTranche(10000000, 150000000, 5));
+        tranches.add(createCumulativeTranche(50000000, 150000000, 7.5));
+        tranches.add(createCumulativeTranche(150000000, 250000000, 10));
+        tranches.add(createCumulativeTranche(250000000, 350000000, 12.5));
+        tranches.add(createCumulativeTranche(350000000, 1000000000000d, 15));
 
         assertEquals(trancheCount, tranches.size());
 
         return tranches;
     }
 
-    private static List<BigDecimal> createCumulativeTranche(double lmmbbls, double ummbbls, double rate)
-    {
+    private static List<BigDecimal> createCumulativeTranche(double lmmbbls,
+            double ummbbls, double rate) {
         final int valueCount = 3;
         List<BigDecimal> tranche = new ArrayList<BigDecimal>(valueCount);
 
@@ -696,14 +703,14 @@ public class Harness {
     private static List<BigDecimal> getCapex() {
         List<BigDecimal> capex = new ArrayList<BigDecimal>(YEAR_COUNT);
 
-        capex.add(new BigDecimal(50));
-        capex.add(new BigDecimal(100));
-        capex.add(new BigDecimal(150));
-        capex.add(new BigDecimal(150));
-        capex.add(new BigDecimal(200));
-        capex.add(new BigDecimal(200));
-        capex.add(new BigDecimal(100));
-        capex.add(new BigDecimal(150));
+        capex.add(new BigDecimal(50000000));
+        capex.add(new BigDecimal(100000000));
+        capex.add(new BigDecimal(150000000));
+        capex.add(new BigDecimal(150000000));
+        capex.add(new BigDecimal(200000000));
+        capex.add(new BigDecimal(200000000));
+        capex.add(new BigDecimal(100000000));
+        capex.add(new BigDecimal(50000000));
 
         assertEquals(YEAR_COUNT, capex.size());
 
@@ -715,14 +722,14 @@ public class Harness {
     private static List<BigDecimal> getCostRecoveryCeiling() {
         List<BigDecimal> list = new ArrayList<BigDecimal>(YEAR_COUNT);
 
-        list.add(new BigDecimal(60));
-        list.add(new BigDecimal(61));
-        list.add(new BigDecimal(62));
-        list.add(new BigDecimal(63));
-        list.add(new BigDecimal(64));
-        list.add(new BigDecimal(65));
-        list.add(new BigDecimal(66));
-        list.add(new BigDecimal(67));
+        list.add(new BigDecimal(100));
+        list.add(new BigDecimal(100));
+        list.add(new BigDecimal(100));
+        list.add(new BigDecimal(100));
+        list.add(new BigDecimal(100));
+        list.add(new BigDecimal(100));
+        list.add(new BigDecimal(100));
+        list.add(new BigDecimal(100));
 
         assertEquals(YEAR_COUNT, list.size());
 
@@ -735,7 +742,8 @@ public class Harness {
 
     // PRODUCTION SHARING TRANCHE PRIVATE
 
-    private static void setShareTranches(ProductionSharingTrancheElement share, List<List<BigDecimal>> tranches) {
+    private static void setShareTranches(ProductionSharingTrancheElement share,
+            List<List<BigDecimal>> tranches) {
         for (List<BigDecimal> tranche : tranches) {
             share.addTranche(tranche);
         }
@@ -743,22 +751,23 @@ public class Harness {
 
     private static List<List<BigDecimal>> getShareTranches() {
         final int trancheCount = 6;
-        List<List<BigDecimal>> tranches = new ArrayList<List<BigDecimal>>(trancheCount);
+        List<List<BigDecimal>> tranches = new ArrayList<List<BigDecimal>>(
+                trancheCount);
 
-        tranches.add(createShareTranche(43, 57, 0, 5));
-        tranches.add(createShareTranche(46, 54, 5, 10));
-        tranches.add(createShareTranche(51, 49, 10, 20));
-        tranches.add(createShareTranche(56, 44, 20, 30));
-        tranches.add(createShareTranche(61, 39, 30, 40));
-        tranches.add(createShareTranche(66, 34, 40, 1000000));
+        tranches.add(createShareTranche(44, 57, 0, 5000));
+        tranches.add(createShareTranche(46, 54, 5000, 10000));
+        tranches.add(createShareTranche(51, 49, 10000, 20000));
+        tranches.add(createShareTranche(56, 44, 20000, 30000));
+        tranches.add(createShareTranche(61, 39, 30000, 40000));
+        tranches.add(createShareTranche(66, 34, 40000, 1000000000));
 
         assertEquals(trancheCount, tranches.size());
 
         return tranches;
     }
 
-    private static List<BigDecimal> createShareTranche(double govtShare, double companyShare, double lmbopd, double umbopd)
-    {
+    private static List<BigDecimal> createShareTranche(double govtShare,
+            double companyShare, double lmbopd, double umbopd) {
         final int valueCount = 4;
         List<BigDecimal> tranche = new ArrayList<BigDecimal>(valueCount);
 
@@ -777,7 +786,7 @@ public class Harness {
     private static List<BigDecimal> getStateParticipationRate() {
         List<BigDecimal> rate = new ArrayList<BigDecimal>(1);
 
-        rate.add(new BigDecimal(19));
+        rate.add(new BigDecimal(10));
 
         assertEquals(1, rate.size());
 

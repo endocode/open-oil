@@ -1,12 +1,12 @@
 package net.openoil.test.visitor;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-
 import net.openoil.element.CostRecoveryElement;
 import net.openoil.test.TestUtil;
 import net.openoil.visitor.CostRecoveryVisitor;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 @RunWith(JUnit4.class)
 public class CostRecoveryVisitorTest {
@@ -21,12 +21,14 @@ public class CostRecoveryVisitorTest {
         visitor.visit(Harness.getFilledFlatRoyaltyElement());
         visitor.visit(Harness.getFilledCapexElement());
         visitor.visit(Harness.getFilledOpexElement());
-        visitor.visit(Harness.getFilledDailyProductionRoyaltyElement());
-        visitor.visit(Harness.getFilledCumulativeProductionRoyaltyElement());
+        // visitor.visit(Harness.getFilledDailyProductionRoyaltyElement());
+        // visitor.visit(Harness.getFilledCumulativeProductionRoyaltyElement());
         visitor.visit(costRecovery);
 
-        TestUtil.assertEquals(Harness.getCostRecovery(), costRecovery.getCostRecovery());
-        TestUtil.assertEquals(Harness.getCumulativeRecoverableCosts(), costRecovery.getCumulativeRecoverableCosts());
+        TestUtil.assertEquals(Harness.getCostRecovery(),
+                costRecovery.getCostRecovery());
+        TestUtil.assertEquals(Harness.getCumulativeRecoverableCosts(),
+                costRecovery.getCumulativeRecoverableCosts());
     }
 
 }
