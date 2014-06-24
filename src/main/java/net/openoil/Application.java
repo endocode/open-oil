@@ -18,6 +18,7 @@ import net.openoil.visitor.FlatRoyaltyVisitor;
 import net.openoil.visitor.InitialisingVisitor;
 import net.openoil.visitor.OpexVisitor;
 import net.openoil.visitor.OutputVisitor;
+import net.openoil.visitor.PriceVisitor;
 import net.openoil.visitor.ProductionSharingRFactorVisitor;
 import net.openoil.visitor.ProductionSharingTrancheVisitor;
 import net.openoil.visitor.ProfitOilVisitor;
@@ -74,7 +75,8 @@ public class Application {
         contract.accept(new InitialisingVisitor(inputs));
 
         // TODO All intermediate visitors are called here - order is hard-coded
-        // right now.
+        // right now. Probably should move into a factory.
+        contract.accept(new PriceVisitor());
         contract.accept(new SurfaceRentalVisitor());
         contract.accept(new FlatRoyaltyVisitor());
         contract.accept(new OpexVisitor());
