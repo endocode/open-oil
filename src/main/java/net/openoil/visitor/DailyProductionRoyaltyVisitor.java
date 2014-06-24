@@ -1,7 +1,6 @@
 package net.openoil.visitor;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,8 +64,7 @@ public class DailyProductionRoyaltyVisitor extends DefaultVisitor {
             // Calculate the avg. daily production (ADP).
             // Example calculations provided use rounding down.
             productionThisYear = production.get(y);
-            adp = productionThisYear.divide(daysPerYear, new MathContext(4,
-                    RoundingMode.DOWN));
+            adp = productionThisYear.divide(daysPerYear, RoundingMode.DOWN);
 
             /*
              * Find which tranche the ADP falls into. The volume for each

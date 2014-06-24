@@ -46,15 +46,14 @@ public class CumulativeProductionRoyaltyVisitor extends DefaultVisitor {
         }
 
         List<BigDecimal> royalty = new ArrayList<BigDecimal>();
-        BigDecimal cumulativeProductionThisYear = BigDecimal.ZERO;
+        BigDecimal productionThisYear = BigDecimal.ZERO;
 
         for (int y = 0; y < year.size(); y++) {
             // Calculate cumulative production to this year
-            cumulativeProductionThisYear = cumulativeProductionThisYear
-                    .add(production.get(y));
+            productionThisYear = production.get(y);
 
             // If cumulative production is still 0, skip to the next year
-            if (cumulativeProductionThisYear.compareTo(BigDecimal.ZERO) == 0) {
+            if (productionThisYear.compareTo(BigDecimal.ZERO) == 0) {
                 royalty.add(BigDecimal.ZERO);
                 continue;
             }
@@ -73,8 +72,8 @@ public class CumulativeProductionRoyaltyVisitor extends DefaultVisitor {
                 upperBound = tranche
                         .get(CumulativeProductionRoyaltyElement.UPPER_MMBBLS);
 
-                if (cumulativeProductionThisYear.compareTo(lowerBound) >= 0
-                        && cumulativeProductionThisYear.compareTo(upperBound) < 0) {
+                if (productionThisYear.compareTo(lowerBound) >= 0
+                        && productionThisYear.compareTo(upperBound) < 0) {
                     break;
                 } else if (trancheN == tranches.size() - 1) {
                     // We've reached the top tranche
@@ -112,8 +111,8 @@ public class CumulativeProductionRoyaltyVisitor extends DefaultVisitor {
                         CumulativeProductionRoyaltyElement.ROYALTY_RATE)
                         .movePointLeft(2);
 
-                volumeTrancheN = cumulativeProductionThisYear.min(
-                        ceilingTrancheN).subtract(floorTrancheN);
+                volumeTrancheN = productionThisYear.min(ceilingTrancheN)
+                        .subtract(floorTrancheN);
 
                 royaltyTrancheN = volumeTrancheN.multiply(rateTrancheN)
                         .multiply(price.get(y));
